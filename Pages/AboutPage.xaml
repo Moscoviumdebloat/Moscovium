@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="MoscoviumThree.Pages.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer Padding="36,24,36,24">
+        <StackPanel MaxWidth="600" HorizontalAlignment="Left" Spacing="16">
+
+            <!-- App Icon and Name -->
+            <StackPanel Orientation="Horizontal" Spacing="20" Margin="0,0,0,8">
+                <Border CornerRadius="16" Width="80" Height="80">
+                    <Image x:Name="AppIcon" Width="64" Height="64"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <StackPanel VerticalAlignment="Center" Spacing="4">
+                    <TextBlock Text="Moscovium" FontSize="28" FontWeight="Bold" />
+                    <TextBlock x:Name="TxtVersion" Text="Version 3.0.0.0" FontSize="14"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Description -->
+            <TextBlock Text="A Windows utility toolbox for debloating, system tweaks, wallpaper management, and gaming configs."
+                       TextWrapping="Wrap" FontSize="14"
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+
+            <!-- Credits Card -->
+            <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1" CornerRadius="8" Padding="20">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Credits" FontSize="16" FontWeight="SemiBold" />
+
+                    <StackPanel Spacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE779;" FontSize="16" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                            <TextBlock Text="Product of Unknown Cyberia" FontSize="14" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE8D4;" FontSize="16" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                            <TextBlock Text="Idea by Yabosen" FontSize="14" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE943;" FontSize="16" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                            <TextBlock Text="Code by Akumarin / Bendy (Megamer Studios)" FontSize="14" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE8FC;" FontSize="16" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                            <TextBlock Text="Version 3 by Fanta Fork" FontSize="14" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Tech Stack -->
+            <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1" CornerRadius="8" Padding="20">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Built with" FontSize="16" FontWeight="SemiBold" />
+                    <TextBlock Text="• .NET 10" FontSize="14" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                    <TextBlock Text="• WinUI 3 (Windows App SDK)" FontSize="14" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                    <TextBlock Text="• Mica Material Design" FontSize="14" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>
