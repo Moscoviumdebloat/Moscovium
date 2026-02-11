@@ -8,6 +8,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWinUI>true</UseWinUI>
     <WindowsPackageType>None</WindowsPackageType>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <EnableMsixTooling>true</EnableMsixTooling>
     <ApplicationIcon>Assets\Logo.ico</ApplicationIcon>
     <RootNamespace>MoscoviumThree</RootNamespace>
     <AssemblyName>MoscoviumThree</AssemblyName>

@@ -24,16 +24,21 @@
     <AppxMSBuildToolsPath Condition="'$(AppxMSBuildToolsPath)' == '' And Exists('$(ProgramFiles64)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VisualStudio\v17.0\AppxPackage\Microsoft.Build.Packaging.Pri.Tasks.dll')">$(ProgramFiles64)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VisualStudio\v17.0\AppxPackage\</AppxMSBuildToolsPath>
 
     <!-- 
-      Priority 2: VS Future/Preview (v18) in 64-bit Program Files 
+      Priority 2: VS Future/Preview (v18) in 64-bit 
     -->
     <AppxMSBuildToolsPath Condition="'$(AppxMSBuildToolsPath)' == '' And Exists('$(ProgramFiles64)\Microsoft Visual Studio\18\BuildTools\MSBuild\Microsoft\VisualStudio\v18.0\AppxPackage\Microsoft.Build.Packaging.Pri.Tasks.dll')">$(ProgramFiles64)\Microsoft Visual Studio\18\BuildTools\MSBuild\Microsoft\VisualStudio\v18.0\AppxPackage\</AppxMSBuildToolsPath>
 
     <!-- 
-      Priority 3: Legacy/x86 Locations (using MSBuildProgramFiles32)
+      Priority 3: Legacy/x86 Locations (VS 2022 x86, VS 2019, VS 18 x86)
     -->
     <AppxMSBuildToolsPath Condition="'$(AppxMSBuildToolsPath)' == '' And Exists('$(MSBuildProgramFiles32)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VisualStudio\v17.0\AppxPackage\Microsoft.Build.Packaging.Pri.Tasks.dll')">$(MSBuildProgramFiles32)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VisualStudio\v17.0\AppxPackage\</AppxMSBuildToolsPath>
     <AppxMSBuildToolsPath Condition="'$(AppxMSBuildToolsPath)' == '' And Exists('$(MSBuildProgramFiles32)\Microsoft Visual Studio\18\BuildTools\MSBuild\Microsoft\VisualStudio\v18.0\AppxPackage\Microsoft.Build.Packaging.Pri.Tasks.dll')">$(MSBuildProgramFiles32)\Microsoft Visual Studio\18\BuildTools\MSBuild\Microsoft\VisualStudio\v18.0\AppxPackage\</AppxMSBuildToolsPath>
     
-    <!-- Also check common Enterprise/Pro/Community in x86 just in case -->
+    <!-- VS 2019 (v16.0) -->
+    <AppxMSBuildToolsPath Condition="'$(AppxMSBuildToolsPath)' == '' And Exists('$(MSBuildProgramFiles32)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VisualStudio\v16.0\AppxPackage\Microsoft.Build.Packaging.Pri.Tasks.dll')">$(MSBuildProgramFiles32)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VisualStudio\v16.0\AppxPackage\</AppxMSBuildToolsPath>
+    <AppxMSBuildToolsPath Condition="'$(AppxMSBuildToolsPath)' == '' And Exists('$(MSBuildProgramFiles32)\Microsoft Visual Studio\2019\Professional\MSBuild\Microsoft\VisualStudio\v16.0\AppxPackage\Microsoft.Build.Packaging.Pri.Tasks.dll')">$(MSBuildProgramFiles32)\Microsoft Visual Studio\2019\Professional\MSBuild\Microsoft\VisualStudio\v16.0\AppxPackage\</AppxMSBuildToolsPath>
+    <AppxMSBuildToolsPath Condition="'$(AppxMSBuildToolsPath)' == '' And Exists('$(MSBuildProgramFiles32)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VisualStudio\v16.0\AppxPackage\Microsoft.Build.Packaging.Pri.Tasks.dll')">$(MSBuildProgramFiles32)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VisualStudio\v16.0\AppxPackage\</AppxMSBuildToolsPath>
+    <AppxMSBuildToolsPath Condition="'$(AppxMSBuildToolsPath)' == '' And Exists('$(MSBuildProgramFiles32)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Microsoft\VisualStudio\v16.0\AppxPackage\Microsoft.Build.Packaging.Pri.Tasks.dll')">$(MSBuildProgramFiles32)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Microsoft\VisualStudio\v16.0\AppxPackage\</AppxMSBuildToolsPath>
+
   </PropertyGroup>
 </Project>

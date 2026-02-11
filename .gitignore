@@ -6,6 +6,10 @@ obj/
 *.cache
 *.log
 *.vs/
+.idea/
+*.bak
+*.tmp
+TestResults/
 
 ## NuGet
 *.nupkg
