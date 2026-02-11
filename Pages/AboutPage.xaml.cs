@@ -23,7 +23,7 @@ public sealed partial class AboutPage : Page
     {
         try
         {
-            var iconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Logo.ico");
+            var iconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Illustration.gif");
             if (File.Exists(iconPath))
             {
                 AppIcon.Source = new BitmapImage(new Uri(iconPath));
