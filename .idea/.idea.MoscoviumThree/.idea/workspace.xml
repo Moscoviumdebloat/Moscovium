@@ -46,12 +46,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
@@ -68,10 +70,10 @@
 }]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1773252031319" />
-    <option name="spentUsd" value="0.008205051" />
+    <option name="spentUsd" value="0.01303255" />
   </component>
   <component name="RecapUselessUpdatesCounter">
-    <option name="suspendCountdown" value="9" />
+    <option name="suspendCountdown" value="7" />
   </component>
   <component name="RunManager">
     <configuration name="MoscoviumThree" type="DotNetProject" factoryName=".NET Project">
@@ -104,7 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1759342697814</updated>
       <workItem from="1759342699063" duration="26000" />
-      <workItem from="1770843268517" duration="1105000" />
+      <workItem from="1770843268517" duration="2547000" />
     </task>
     <servers />
   </component>
