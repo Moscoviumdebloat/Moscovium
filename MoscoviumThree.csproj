@@ -19,7 +19,6 @@
     <Description>Windows utility toolbox</Description>
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <Platforms>x64;x86;ARM64</Platforms>
-    <AppxMSBuildToolsPath>C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\MSBuild\Microsoft\VisualStudio\v18.0\AppxPackage\</AppxMSBuildToolsPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,7 +29,15 @@
 
   <ItemGroup>
     <Content Include="Assets\Logo.ico" />
-    <EmbeddedResource Include="Assets\Bundled\**\*" />
+    <Content Include="Assets\Illustration.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="StartAllBack.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Bundled\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
