@@ -37,18 +37,6 @@
                 </StackPanel>
             </Button>
 
-            <!-- Yabosen CFG -->
-            <Button x:Name="BtnYaboCfg" Style="{StaticResource ActionCardStyle}" Click="BtnYaboCfg_Click">
-                <StackPanel Orientation="Horizontal" Spacing="16">
-                    <FontIcon Glyph="&#xE7FC;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
-                    <StackPanel Spacing="2">
-                        <TextBlock Text="Yabosen CS2 Config" Style="{StaticResource CardHeaderStyle}" />
-                        <TextBlock Text="Download the latest Yabosen config for CS2 and install it to your game directory automatically."
-                                   Style="{StaticResource CardDescriptionStyle}" />
-                    </StackPanel>
-                </StackPanel>
-            </Button>
-
             <!-- Restart Explorer -->
             <Button x:Name="BtnRestartExplorer" Style="{StaticResource ActionCardStyle}" Click="BtnRestartExplorer_Click">
                 <StackPanel Orientation="Horizontal" Spacing="16">
@@ -72,30 +60,6 @@
                     </StackPanel>
                 </StackPanel>
             </Button>
-
-            <!-- Drag and Drop CFG Zone -->
-            <TextBlock Text="CS2 Config Drop Zone" Style="{StaticResource SectionHeaderStyle}" Margin="0,24,0,0" />
-            <Border x:Name="DropZone"
-                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                    BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
-                    BorderThickness="2"
-                    CornerRadius="12"
-                    Padding="24"
-                    MinHeight="100"
-                    AllowDrop="True"
-                    DragOver="DropZone_DragOver"
-                    Drop="DropZone_Drop">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
-                    <FontIcon Glyph="&#xE896;" FontSize="32" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" HorizontalAlignment="Center" />
-                    <TextBlock Text="Drop your CS2 .cfg files here"
-                               FontSize="16" FontWeight="SemiBold"
-                               HorizontalAlignment="Center" />
-                    <TextBlock Text="Files will be automatically copied to your CS2 cfg folder"
-                               FontSize="12"
-                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                               HorizontalAlignment="Center" />
-                </StackPanel>
-            </Border>
 
         </StackPanel>
     </ScrollViewer>

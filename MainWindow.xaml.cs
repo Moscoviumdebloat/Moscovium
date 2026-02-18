@@ -23,12 +23,25 @@ public sealed partial class MainWindow : Window
         SetupWindow();
     }
 
+    [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
+    private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
+    private const int DWMWA_USE_IMMERSIVE_DARK_MODE_BEFORE_20H1 = 19;
+    private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
+
     private void SetupWindow()
     {
         // Get AppWindow for title bar and sizing
         var hWnd = WindowNative.GetWindowHandle(this);
         var windowId = Win32Interop.GetWindowIdFromWindow(hWnd);
         var appWindow = AppWindow.GetFromWindowId(windowId);
+
+        // Force Dark Mode on Title Bar (Standard Win32)
+        int useDarkMode = 1;
+        if (DwmSetWindowAttribute(hWnd, DWMWA_USE_IMMERSIVE_DARK_MODE, ref useDarkMode, sizeof(int)) != 0)
+        {
+            DwmSetWindowAttribute(hWnd, DWMWA_USE_IMMERSIVE_DARK_MODE_BEFORE_20H1, ref useDarkMode, sizeof(int));
+        }
 
         // Set window size
         appWindow.Resize(new SizeInt32(960, 640));
@@ -39,6 +52,9 @@ public sealed partial class MainWindow : Window
         // Try to set the icon
         try
         {
+            // For portable/single-file, BaseDirectory might be temp.
+            // Check process main module filename as fallback for "installed" path if needed, 
+            // but usually Assets are content.
             var iconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Logo.ico");
             if (File.Exists(iconPath))
             {
@@ -81,11 +97,13 @@ public sealed partial class MainWindow : Window
                 case "toolbox":
                     ContentFrame.Navigate(typeof(ToolboxPage));
                     break;
-                case "network":
-                    ContentFrame.Navigate(typeof(NetworkPage));
-                    break;
+
                 case "about":
                     ContentFrame.Navigate(typeof(AboutPage));
+                    break;
+
+                case "cs2":
+                    ContentFrame.Navigate(typeof(CS2Page));
                     break;
             }
         }

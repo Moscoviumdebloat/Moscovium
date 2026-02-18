@@ -1,16 +1,14 @@
 using System.Diagnostics;
 using System.IO.Compression;
-using System.Net.Http;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using MoscoviumThree.Helpers;
-using Windows.ApplicationModel.DataTransfer;
 
 namespace MoscoviumThree.Pages;
 
 public sealed partial class HomePage : Page
 {
-    private static readonly HttpClient _httpClient = new();
+
 
     public HomePage()
     {
@@ -19,24 +17,48 @@ public sealed partial class HomePage : Page
 
     private async void BtnDebloat_Click(object sender, RoutedEventArgs e)
     {
-        // Ask about optional shell tools
+        // Define options for shell modification
+        var rbOption1 = new RadioButton 
+        { 
+            Content = "Install Explorer Patcher, OpenShell, and Nilesoft Shell", 
+            IsChecked = true, 
+            Tag = "Option1",
+            Margin = new Thickness(0, 4, 0, 4)
+        };
+        var rbOption2 = new RadioButton 
+        { 
+            Content = "Install StartAllBack (Trial/License required)", 
+            Tag = "Option2",
+            Margin = new Thickness(0, 4, 0, 4)
+        };
+        var rbOption3 = new RadioButton 
+        { 
+            Content = "No shell modifications (Debloat only)", 
+            Tag = "Option3",
+            Margin = new Thickness(0, 4, 0, 4)
+        };
+
+        var stack = new StackPanel { Spacing = 4 };
+        stack.Children.Add(rbOption1);
+        stack.Children.Add(rbOption2);
+        stack.Children.Add(rbOption3);
+
         var dialog = new ContentDialog
         {
-            Title = "Debloat Windows",
-            Content = "Would you also like to install Explorer Patcher, OpenShell, and Nilesoft Shell with the debloat script?",
-            PrimaryButtonText = "Yes, install all",
-            SecondaryButtonText = "No, debloat only",
+            Title = "Debloat & Shell Options",
+            Content = stack,
+            PrimaryButtonText = "Run Selected",
             CloseButtonText = "Cancel",
             DefaultButton = ContentDialogButton.Primary,
             XamlRoot = this.XamlRoot
         };
 
         var result = await dialog.ShowAsync();
-        if (result == ContentDialogResult.None) return;
+        if (result != ContentDialogResult.Primary) return;
 
-        if (result == ContentDialogResult.Primary)
+        // 1. Handle Shell Installs
+        if (rbOption1.IsChecked == true)
         {
-            // Install optional shell enhancements
             try
             {
                 // OpenShell
@@ -54,15 +76,44 @@ public sealed partial class HomePage : Page
                     FileName = "msiexec.exe",
                     Arguments = $"/i \"{nsPath}\"",
                     UseShellExecute = true
-                });
+                })?.WaitForExit(); // Wait for MSI to finish if possible, though Process.Start might return null if reused
             }
             catch (Exception ex)
             {
-                await ShowError($"Failed to extract installers: {ex.Message}");
+                await ShowError($"Failed to extract/run installers: {ex.Message}");
+            }
+        }
+        else if (rbOption2.IsChecked == true)
+        {
+            try 
+            {
+                // Run StartAllBack.ps1
+                string sabPath = System.IO.Path.Combine(System.AppContext.BaseDirectory, "StartAllBack.ps1");
+                if (System.IO.File.Exists(sabPath))
+                {
+                     // Run hidden/separate process to verify
+                     Process.Start(new ProcessStartInfo
+                     {
+                         FileName = "powershell.exe",
+                         Arguments = $"-ExecutionPolicy Bypass -File \"{sabPath}\"",
+                         UseShellExecute = true,
+                         Verb = "runas" // Ensure admin
+                     })?.WaitForExit();
+                }
+                else
+                {
+                    await ShowError("StartAllBack.ps1 not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                await ShowError($"Failed to run StartAllBack script: {ex.Message}");
             }
         }
 
-        // Run debloat scripts
+        // 2. Run debloat scripts (Raphi Silent + WinUtil)
+        // Note: StartAllBack script might have restarted explorer, so we proceed.
+        
         string[] debloatArgs =
         {
             "-Silent", "-RemoveApps", "-RemoveGamingApps", "-DisableTelemetry",
@@ -77,6 +128,10 @@ public sealed partial class HomePage : Page
 
         var arguments = "&([scriptblock]::Create((irm \"https://debloat.raphi.re/\"))) -RunDefaults " +
                         string.Join(" ", debloatArgs);
+        
+        // Use RunElevatedPowerShellRaw but maybe wait?
+        // Current ProcessHelper Implementation implies fire-and-forget or output capture?
+        // RunElevatedPowerShellRaw uses Process.Start with verbs.
         ProcessHelper.RunElevatedPowerShellRaw(arguments);
 
         // ChrisTitus WinUtil with debloat config
@@ -84,7 +139,10 @@ public sealed partial class HomePage : Page
         {
             var debloatJson = ResourceHelper.ExtractToTemp("Debloat.json", "Debloat.json");
             ProcessHelper.RunPowerShellCommand("irm 'https://christitus.com/win' -OutFile \"$env:TEMP\\winutil.ps1\"");
-            await Task.Delay(1500);
+            
+            // Wait a bit is risky but fine for now
+            await Task.Delay(2000);
+            
             ProcessHelper.RunPowerShellCommand($"& \"$env:TEMP\\winutil.ps1\" -Config '{debloatJson}' -Run");
         }
         catch (Exception ex)
@@ -149,35 +207,7 @@ public sealed partial class HomePage : Page
         }
     }
 
-    private async void BtnYaboCfg_Click(object sender, RoutedEventArgs e)
-    {
-        var folders = SteamPathHelper.FindCfgFolders();
-        if (folders.Count == 0)
-        {
-            await ShowError("Could not find CS2 cfg folder.");
-            return;
-        }
 
-        try
-        {
-            var response = await _httpClient.GetAsync("https://raw.githubusercontent.com/Yabosen/YabosenCFG/main/yabosen.cfg");
-            response.EnsureSuccessStatusCode();
-            var data = await response.Content.ReadAsByteArrayAsync();
-
-            foreach (var folder in folders)
-            {
-                var dest = Path.Combine(folder, "yabosen.cfg");
-                File.WriteAllBytes(dest, data);
-            }
-
-            await ShowInfo($"yabosen.cfg installed to {folders.Count} location(s):\n" +
-                          string.Join("\n", folders));
-        }
-        catch (Exception ex)
-        {
-            await ShowError($"Failed to download config: {ex.Message}");
-        }
-    }
 
     private void BtnRestartExplorer_Click(object sender, RoutedEventArgs e)
     {
@@ -200,49 +230,6 @@ public sealed partial class HomePage : Page
         catch (Exception ex)
         {
             await ShowError($"Failed to install runtimes: {ex.Message}");
-        }
-    }
-
-    private void DropZone_DragOver(object sender, Microsoft.UI.Xaml.DragEventArgs e)
-    {
-        if (e.DataView.Contains(StandardDataFormats.StorageItems))
-        {
-            e.AcceptedOperation = DataPackageOperation.Copy;
-            e.DragUIOverride.Caption = "Drop .cfg files";
-        }
-    }
-
-    private async void DropZone_Drop(object sender, Microsoft.UI.Xaml.DragEventArgs e)
-    {
-        if (!e.DataView.Contains(StandardDataFormats.StorageItems)) return;
-
-        var items = await e.DataView.GetStorageItemsAsync();
-        var folders = SteamPathHelper.FindCfgFolders();
-
-        if (folders.Count == 0)
-        {
-            await ShowError("Could not find CS2 cfg folder.");
-            return;
-        }
-
-        foreach (var item in items)
-        {
-            if (item is Windows.Storage.StorageFile file)
-            {
-                if (!file.FileType.Equals(".cfg", StringComparison.OrdinalIgnoreCase))
-                {
-                    await ShowError($"'{file.Name}' is not a .cfg file.");
-                    continue;
-                }
-
-                foreach (var folder in folders)
-                {
-                    var dest = Path.Combine(folder, file.Name);
-                    File.Copy(file.Path, dest, true);
-                }
-
-                await ShowInfo($"'{file.Name}' copied to {folders.Count} CS2 cfg location(s).");
-            }
         }
     }
 

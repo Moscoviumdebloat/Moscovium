@@ -37,6 +37,18 @@
                 </StackPanel>
             </Button>
 
+            <!-- StartAllBack -->
+            <Button x:Name="BtnSAB" Style="{StaticResource ActionCardStyle}" Click="BtnSAB_Click">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE8A9;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Reset Trial StartAllBack" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="StartAllBack Trial Reset"
+                                   Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+
             <!-- MAS Activation -->
             <Button x:Name="BtnMAS" Style="{StaticResource ActionCardStyle}" Click="BtnMAS_Click">
                 <StackPanel Orientation="Horizontal" Spacing="16">
@@ -56,6 +68,18 @@
                     <StackPanel Spacing="2">
                         <TextBlock Text="WiFi / Network Tweaks" Style="{StaticResource CardHeaderStyle}" />
                         <TextBlock Text="Go to network settings to toggle TCP autotuning for better connectivity."
+                                   Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+
+            <!-- Disable Dynamic Tick -->
+            <Button x:Name="BtnDisableDynamicTick" Style="{StaticResource ActionCardStyle}" Click="BtnDisableDynamicTick_Click">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE916;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Disable Dynamic Tick" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Run bcdedit to disable dynamic tick (requires restart)."
                                    Style="{StaticResource CardDescriptionStyle}" />
                     </StackPanel>
                 </StackPanel>

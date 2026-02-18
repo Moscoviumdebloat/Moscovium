@@ -22,11 +22,13 @@
                         <FontIcon Glyph="&#xE74C;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Network" Tag="network">
+
+                <NavigationViewItem Content="Counter-Strike 2" Tag="cs2">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE968;" />
+                        <FontIcon Glyph="&#xE7FC;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>
