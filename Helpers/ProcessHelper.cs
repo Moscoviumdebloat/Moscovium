@@ -13,13 +13,14 @@ public static class ProcessHelper
     /// <summary>
     /// Run a PowerShell command elevated (runas).
     /// </summary>
-    public static void RunElevatedPowerShell(string arguments, bool noExit = false)
+    public static Process? RunElevatedPowerShell(string command, bool noExit = false)
     {
-        var prefix = noExit ? "-NoProfile -ExecutionPolicy Bypass -NoExit -Command " : "";
-        Process.Start(new ProcessStartInfo
+        var encodedCommand = GetEncodedCommand(command);
+        var noExitFlag = noExit ? "-NoExit " : "";
+        return Process.Start(new ProcessStartInfo
         {
             FileName = PowerShellPath,
-            Arguments = prefix + arguments,
+            Arguments = $"-NoProfile -ExecutionPolicy Bypass {noExitFlag}-EncodedCommand {encodedCommand}",
             RedirectStandardOutput = false,
             UseShellExecute = true,
             CreateNoWindow = false,
@@ -30,12 +31,13 @@ public static class ProcessHelper
     /// <summary>
     /// Run a PowerShell command elevated with explicit arguments.
     /// </summary>
-    public static void RunElevatedPowerShellRaw(string arguments)
+    public static Process? RunElevatedPowerShellRaw(string command)
     {
-        Process.Start(new ProcessStartInfo
+        var encodedCommand = GetEncodedCommand(command);
+        return Process.Start(new ProcessStartInfo
         {
             FileName = PowerShellPath,
-            Arguments = arguments,
+            Arguments = $"-NoProfile -ExecutionPolicy Bypass -EncodedCommand {encodedCommand}",
             RedirectStandardOutput = false,
             UseShellExecute = true,
             CreateNoWindow = false,
@@ -46,9 +48,9 @@ public static class ProcessHelper
     /// <summary>
     /// Run an executable elevated.
     /// </summary>
-    public static void RunElevated(string fileName, string arguments = "")
+    public static Process? RunElevated(string fileName, string arguments = "")
     {
-        Process.Start(new ProcessStartInfo
+        return Process.Start(new ProcessStartInfo
         {
             FileName = fileName,
             Arguments = arguments,
@@ -60,9 +62,9 @@ public static class ProcessHelper
     /// <summary>
     /// Run an executable normally (no elevation).
     /// </summary>
-    public static void Run(string fileName, string arguments = "")
+    public static Process? Run(string fileName, string arguments = "")
     {
-        Process.Start(new ProcessStartInfo
+        return Process.Start(new ProcessStartInfo
         {
             FileName = fileName,
             Arguments = arguments,
@@ -73,16 +75,22 @@ public static class ProcessHelper
     /// <summary>
     /// Run a PowerShell command with NoProfile, Bypass, NoExit.
     /// </summary>
-    public static void RunPowerShellCommand(string command)
+    public static Process? RunPowerShellCommand(string command)
     {
-        Process.Start(new ProcessStartInfo
+        var encodedCommand = GetEncodedCommand(command);
+        return Process.Start(new ProcessStartInfo
         {
             FileName = PowerShellPath,
-            Arguments = $"-NoProfile -ExecutionPolicy Bypass -NoExit -Command \"{command}\"",
+            Arguments = $"-NoProfile -ExecutionPolicy Bypass -NoExit -EncodedCommand {encodedCommand}",
             RedirectStandardOutput = false,
             UseShellExecute = true,
             CreateNoWindow = false,
             Verb = "runas"
         });
+    }
+
+    private static string GetEncodedCommand(string command)
+    {
+        return Convert.ToBase64String(System.Text.Encoding.Unicode.GetBytes(command));
     }
 }

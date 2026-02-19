@@ -23,14 +23,8 @@ public sealed partial class ToolboxPage : Page
             string sabPath = System.IO.Path.Combine(System.AppContext.BaseDirectory, "StartAllBack.ps1");
             if (System.IO.File.Exists(sabPath))
             {
-                 // Run hidden/separate process to verify
-                 var proc = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                 {
-                     FileName = "powershell.exe",
-                     Arguments = $"-ExecutionPolicy Bypass -File \"{sabPath}\"",
-                     UseShellExecute = true,
-                     Verb = "runas" 
-                 });
+                 // Run elevated via ProcessHelper to ensure secure argument handling
+                 var proc = ProcessHelper.RunElevatedPowerShellRaw($"& '{sabPath.Replace("'", "''")}'");
 
                  if (proc != null)
                  {

@@ -74,8 +74,8 @@ public sealed partial class HomePage : Page
                 Process.Start(new ProcessStartInfo
                 {
                     FileName = "msiexec.exe",
-                    Arguments = $"/i \"{nsPath}\"",
-                    UseShellExecute = true
+                    ArgumentList = { "/i", nsPath },
+                    UseShellExecute = false
                 })?.WaitForExit(); // Wait for MSI to finish if possible, though Process.Start might return null if reused
             }
             catch (Exception ex)
@@ -91,14 +91,8 @@ public sealed partial class HomePage : Page
                 string sabPath = System.IO.Path.Combine(System.AppContext.BaseDirectory, "StartAllBack.ps1");
                 if (System.IO.File.Exists(sabPath))
                 {
-                     // Run hidden/separate process to verify
-                     Process.Start(new ProcessStartInfo
-                     {
-                         FileName = "powershell.exe",
-                         Arguments = $"-ExecutionPolicy Bypass -File \"{sabPath}\"",
-                         UseShellExecute = true,
-                         Verb = "runas" // Ensure admin
-                     })?.WaitForExit();
+                     // Run elevated via ProcessHelper to ensure secure argument handling
+                     ProcessHelper.RunElevatedPowerShellRaw($"& '{sabPath.Replace("'", "''")}'")?.WaitForExit();
                 }
                 else
                 {
