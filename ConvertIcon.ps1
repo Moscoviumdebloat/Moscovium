@@ -1,6 +1,15 @@
 
 Add-Type -AssemblyName System.Drawing
 
+# Define DestroyIcon to fix GDI handle leak
+if (-not ("Win32.NativeMethods" -as [type])) {
+    $signature = @"
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool DestroyIcon(IntPtr hIcon);
+"@
+    Add-Type -MemberDefinition $signature -Namespace "Win32" -Name "NativeMethods"
+}
+
 $source = "$PSScriptRoot\Assets\Illustration.gif"
 $dest = "$PSScriptRoot\Assets\Logo.ico"
 $backup = "$PSScriptRoot\Assets\Logo.ico.bak"
@@ -23,5 +32,8 @@ $fs.Close()
 
 $icon.Dispose()
 $bmp.Dispose()
-# Note: $handle leak is negligible for this one-off script
+
+# Properly destroy the icon handle to fix the GDI leak
+[Win32.NativeMethods]::DestroyIcon($handle) | Out-Null
+
 Write-Host "Success: Converted $source -> $dest"
