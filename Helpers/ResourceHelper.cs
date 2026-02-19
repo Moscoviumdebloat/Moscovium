@@ -61,4 +61,15 @@ public static class ResourceHelper
 
         return extractPath;
     }
+
+    /// <summary>
+    /// Asynchronously extract an embedded ZIP resource and decompress it to a temp directory.
+    /// </summary>
+    /// <param name="resourceName">The ZIP resource filename</param>
+    /// <param name="outputFolderName">Desired output folder name in temp</param>
+    /// <returns>Full path to the extracted directory</returns>
+    public static async Task<string> ExtractZipToTempAsync(string resourceName, string outputFolderName)
+    {
+        return await Task.Run(() => ExtractZipToTemp(resourceName, outputFolderName));
+    }
 }

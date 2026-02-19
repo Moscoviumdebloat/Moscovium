@@ -220,9 +220,10 @@ public sealed partial class HomePage : Page
 
     private async void BtnRuntime_Click(object sender, RoutedEventArgs e)
     {
+        BtnRuntime.IsEnabled = false;
         try
         {
-            var extractPath = ResourceHelper.ExtractZipToTemp(
+            var extractPath = await ResourceHelper.ExtractZipToTempAsync(
                 "Visual-C-Runtimes-All-in-One-Nov-2025.zip",
                 "VisualCDistributables");
             ProcessHelper.Run(Path.Combine(extractPath, "install_all.bat"));
@@ -230,6 +231,10 @@ public sealed partial class HomePage : Page
         catch (Exception ex)
         {
             await ShowError($"Failed to install runtimes: {ex.Message}");
+        }
+        finally
+        {
+            BtnRuntime.IsEnabled = true;
         }
     }
 
