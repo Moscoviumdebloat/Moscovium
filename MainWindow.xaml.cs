@@ -10,8 +10,11 @@ using WinRT.Interop;
 
 namespace MoscoviumThree;
 
+
 public sealed partial class MainWindow : Window
 {
+    private DispatcherTimer _clockTimer;
+
     public MainWindow()
     {
         this.InitializeComponent();
@@ -21,6 +24,36 @@ public sealed partial class MainWindow : Window
 
         // Configure window
         SetupWindow();
+        
+        // Initialize Clock
+        StartClock();
+    }
+
+    private void StartClock()
+    {
+        _clockTimer = new DispatcherTimer();
+        _clockTimer.Interval = TimeSpan.FromSeconds(1);
+        _clockTimer.Tick += ClockTimer_Tick;
+        _clockTimer.Start();
+        // Initial update
+        UpdateClock();
+    }
+
+    private void ClockTimer_Tick(object sender, object e)
+    {
+        UpdateClock();
+    }
+
+    private void UpdateClock()
+    {
+        if (ClockTextBlock != null)
+        {
+            ClockTextBlock.Text = DateTime.Now.ToString("HH:mm");
+        }
+        if (DateTextBlock != null)
+        {
+            DateTextBlock.Text = DateTime.Now.ToString("ddd, MMM d");
+        }
     }
 
     [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
@@ -47,7 +80,7 @@ public sealed partial class MainWindow : Window
         appWindow.Resize(new SizeInt32(960, 640));
 
         // Set title bar
-        appWindow.Title = "Moscovium v3.0";
+        appWindow.Title = "Moscovium v3.1.1";
 
         // Try to set the icon
         try
@@ -112,6 +145,10 @@ public sealed partial class MainWindow : Window
 
                 case "store":
                     ContentFrame.Navigate(typeof(AppStorePage));
+                    break;
+
+                case "optimizations":
+                    ContentFrame.Navigate(typeof(OptimizationsPage));
                     break;
 
                 // Settings is handled by IsSettingsSelected

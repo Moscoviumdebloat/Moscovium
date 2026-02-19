@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="MoscoviumThree.Pages.OptimizationsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer Padding="36,24,36,24">
+        <StackPanel MaxWidth="800" HorizontalAlignment="Left" Spacing="4">
+
+            <!-- Header -->
+            <TextBlock Text="Optimizations" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,20" />
+
+            <TextBlock Text="Performance Tweaks" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,0,0,12" />
+
+            <!-- Win11 Debloat (Raphi) -->
+            <Button x:Name="BtnRaphiDebloat" Style="{StaticResource ActionCardStyle}" Click="BtnRaphiDebloat_Click">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE783;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Step 1: Win11 Debloat (Raphi)" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Run the Raphi debloat process to remove bloatware and telemetry."
+                                   Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+
+            <!-- Chris Titus WinUtil -->
+            <Button x:Name="BtnChrisTitus" Style="{StaticResource ActionCardStyle}" Click="BtnChrisTitus_Click">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE912;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Step 2: Chris Titus WinUtil (Automated)" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Run the Chris Titus tool with 'Debloat.json' configuration for advanced tweaks."
+                                   Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+
+            <TextBlock Text="Manual Optimizations" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,20,0,12" />
+
+            <!-- Network Tweaks -->
+            <Button x:Name="BtnNetwork" Style="{StaticResource ActionCardStyle}" Click="BtnNetwork_Click">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE968;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="WiFi / Network Tweaks" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Manage TCP autotuning for potentially better connectivity."
+                                   Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+
+            <!-- Dynamic Tick -->
+            <Button x:Name="BtnDynamicTick" Style="{StaticResource ActionCardStyle}" Click="BtnDynamicTick_Click">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE916;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Disable Dynamic Tick" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Run bcdedit to disable dynamic tick (restart required)."
+                                   Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+
+            <!-- Win32PrioritySeparation -->
+            <Button x:Name="BtnWin32Priority" Style="{StaticResource ActionCardStyle}" Click="BtnWin32Priority_Click">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE8B8;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Set Win32PrioritySeparation" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Set processor scheduling priority to 22 (Decimal) for responsiveness."
+                                   Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

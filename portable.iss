@@ -1,6 +1,6 @@
 ; Moscovium Portable — Self-Extracting Executable
 #define MyAppName "Moscovium Portable"
-#define MyAppVersion "3.0.0"
+#define MyAppVersion "3.1.1"
 #define MyAppExeName "MoscoviumThree.exe"
 #define PublishDir "bin\x64\Release\net10.0-windows10.0.19041.0\win-x64\publish"
 

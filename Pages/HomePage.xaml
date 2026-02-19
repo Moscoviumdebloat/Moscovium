@@ -13,17 +13,7 @@
             <!-- Header -->
             <TextBlock Text="Home" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,20" />
 
-            <!-- Debloat -->
-            <Button x:Name="BtnDebloat" Style="{StaticResource ActionCardStyle}" Click="BtnDebloat_Click">
-                <StackPanel Orientation="Horizontal" Spacing="16">
-                    <FontIcon Glyph="&#xE74D;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
-                    <StackPanel Spacing="2">
-                        <TextBlock Text="Debloat Windows" Style="{StaticResource CardHeaderStyle}" />
-                        <TextBlock Text="Remove bloatware, disable telemetry, and apply privacy tweaks. Optionally install OpenShell, Explorer Patcher, and Nilesoft Shell."
-                                   Style="{StaticResource CardDescriptionStyle}" />
-                    </StackPanel>
-                </StackPanel>
-            </Button>
+
 
             <!-- Wallpaper -->
             <Button x:Name="BtnWallpaper" Style="{StaticResource ActionCardStyle}" Click="BtnWallpaper_Click">

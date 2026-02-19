@@ -61,29 +61,10 @@
                 </StackPanel>
             </Button>
 
-            <!-- Navigate to Network -->
-            <Button x:Name="BtnWifi" Style="{StaticResource ActionCardStyle}" Click="BtnWifi_Click">
-                <StackPanel Orientation="Horizontal" Spacing="16">
-                    <FontIcon Glyph="&#xE968;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
-                    <StackPanel Spacing="2">
-                        <TextBlock Text="WiFi / Network Tweaks" Style="{StaticResource CardHeaderStyle}" />
-                        <TextBlock Text="Go to network settings to toggle TCP autotuning for better connectivity."
-                                   Style="{StaticResource CardDescriptionStyle}" />
-                    </StackPanel>
-                </StackPanel>
-            </Button>
 
-            <!-- Disable Dynamic Tick -->
-            <Button x:Name="BtnDisableDynamicTick" Style="{StaticResource ActionCardStyle}" Click="BtnDisableDynamicTick_Click">
-                <StackPanel Orientation="Horizontal" Spacing="16">
-                    <FontIcon Glyph="&#xE916;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
-                    <StackPanel Spacing="2">
-                        <TextBlock Text="Disable Dynamic Tick" Style="{StaticResource CardHeaderStyle}" />
-                        <TextBlock Text="Run bcdedit to disable dynamic tick (requires restart)."
-                                   Style="{StaticResource CardDescriptionStyle}" />
-                    </StackPanel>
-                </StackPanel>
-            </Button>
+
+
+
 
         </StackPanel>
     </ScrollViewer>
