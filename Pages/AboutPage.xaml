@@ -16,7 +16,7 @@
                     <Image x:Name="AppIcon" Width="400" Height="200" Stretch="Uniform"
                            HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Border>
-                <TextBlock x:Name="TxtVersion" Text="Version 3.0.0.0" FontSize="14"
+                <TextBlock x:Name="TxtVersion" Text="Version 3.1.0.0" FontSize="14"
                            HorizontalAlignment="Center"
                            Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
             </StackPanel>

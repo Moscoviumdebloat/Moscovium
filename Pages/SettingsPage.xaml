@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="MoscoviumThree.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MoscoviumThree.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer Padding="24">
+        <StackPanel Spacing="24" MaxWidth="800" HorizontalAlignment="Left">
+            <TextBlock Text="Settings" Style="{ThemeResource TitleTextBlockStyle}"/>
+
+            <!-- App Store Settings -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="App Store" Style="{ThemeResource SubheaderTextBlockStyle}"/>
+                
+                <StackPanel Spacing="12" Padding="16" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8">
+                    <TextBlock Text="App Download Location" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="PathTextBox" IsReadOnly="True" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                        <Button Grid.Column="1" Content="Browse" Click="BrowseButton_Click" VerticalAlignment="Center"/>
+                    </Grid>
+                    <TextBlock Text="Apps will be downloaded and installed to this folder." Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Updates -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Updates" Style="{ThemeResource SubheaderTextBlockStyle}"/>
+
+                <StackPanel Spacing="16" Padding="16" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8">
+                    <ToggleSwitch x:Name="AutoUpdateAppsToggle" Header="Auto-update installed apps" Toggled="AutoUpdateAppsToggle_Toggled"/>
+                    <ToggleSwitch x:Name="AutoUpdateMoscoviumToggle"
+                              Header="Auto-update Moscovium"
+                              OnContent="On"
+                              OffContent="Off"
+                              Toggled="AutoUpdateMoscoviumToggle_Toggled"
+                              Margin="0,0,0,20"/>
+
+                <TextBlock Text="GitHub Personal Access Token (Optional)" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="0,0,0,10"/>
+                <TextBlock Text="Use this if you see 'No apps found' due to API rate limits." Style="{StaticResource CaptionTextBlockStyle}" Foreground="Gray" Margin="0,0,0,10"/>
+                <PasswordBox x:Name="GitHubTokenBox"
+                             PlaceholderText="ghp_..."
+                             PasswordChanged="GitHubTokenBox_PasswordChanged"
+                             Width="400"
+                             HorizontalAlignment="Left"/>
+                </StackPanel>
+            </StackPanel>
+
+            <TextBlock Text="Moscovium v3.1.0" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" HorizontalAlignment="Center" Margin="0,24,0,0"/>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -86,25 +86,35 @@ public sealed partial class MainWindow : Window
 
     private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
-        if (args.SelectedItemContainer is NavigationViewItem item)
+        if (args.IsSettingsSelected)
         {
-            var tag = item.Tag?.ToString();
-            switch (tag)
+            ContentFrame.Navigate(typeof(SettingsPage));
+        }
+        else if (args.SelectedItemContainer is NavigationViewItem selectedItem)
+        {
+            switch (selectedItem.Tag.ToString())
             {
                 case "home":
                     ContentFrame.Navigate(typeof(HomePage));
                     break;
+
                 case "toolbox":
                     ContentFrame.Navigate(typeof(ToolboxPage));
+                    break;
+
+                case "cs2":
+                    ContentFrame.Navigate(typeof(CS2Page));
                     break;
 
                 case "about":
                     ContentFrame.Navigate(typeof(AboutPage));
                     break;
 
-                case "cs2":
-                    ContentFrame.Navigate(typeof(CS2Page));
+                case "store":
+                    ContentFrame.Navigate(typeof(AppStorePage));
                     break;
+
+                // Settings is handled by IsSettingsSelected
             }
         }
     }
