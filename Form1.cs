@@ -58,7 +58,8 @@ namespace Moscovium_Lite
         public Form1()
         {
             InitializeComponent();
-
+            label3.Text = DateTime.Now.ToString("hh:mm");
+            label4.Text = DateTime.Now.ToString("D");
             ApplyRetroFont(this);
         }
 
@@ -110,252 +111,34 @@ namespace Moscovium_Lite
             form2.Show();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private async void button4_Click(object sender, EventArgs e)
         {
-            QuestionForm questionForm = new QuestionForm();
-            questionForm.ShowDialog();
-            if (questionForm.Answer == "DBA")
+            try
             {
-                string OPL = Path.Combine(Path.GetTempPath(), "OpenShellSetup_4_4_196.exe");
-                File.WriteAllBytes(OPL, Moscovium_Lite.Properties.Resources.OpenShell);
-                Process.Start(OPL);
-                string EPL = Path.Combine(Path.GetTempPath(), "ep_setup.exe");
-                File.WriteAllBytes(EPL, Moscovium_Lite.Properties.Resources.ep_setup);
-                Process.Start(EPL);
-
-                string NSL = Path.Combine(Path.GetTempPath(), "setup-x64.msi");
-                File.WriteAllBytes(NSL, Moscovium_Lite.Properties.Resources.nilesoft_shell);
-                Process.Start(new ProcessStartInfo
+                string[] debloatArgs =
                 {
-                    FileName = "msiexec.exe",
-                    Arguments = "/i \"" + NSL + "\"",
-                    UseShellExecute = true
-                });
+                "-Silent", "-RemoveApps", "-RemoveGamingApps", "-DisableTelemetry",
+                "-DisableBing", "-DisableSuggestions", "-DisableLockscreenTips",
+                "-RevertContextMenu", "-TaskbarAlignLeft", "-HideSearchTb",
+                "-DisableWidgets", "-DisableCopilot", "-ClearStartAllUsers",
+                "-DisableDVR", "-DisableStartRecommended", "-ExplorerToThisPC",
+                "-DisableMouseAcceleration", "-DisableDesktopSpotlight",
+                "-DisableSettings365Ads", "-DisableSettingsHome",
+                "-DisablePaintAI", "-DisableNotepadAI", "-DisableStickyKeys"
+            };
 
-                string[] args = {"-Silent",
-        "-RemoveApps",
-        "-RemoveGamingApps",
-        "-DisableTelemetry",
-        "-DisableBing",
-        "-DisableSuggestions",
-        "-DisableLockscreenTips",
-        "-RevertContextMenu",
-        "-TaskbarAlignLeft",
-        "-HideSearchTb",
-        "-DisableWidgets",
-        "-DisableCopilot",
-        "-ClearStartAllUsers",
-        "-DisableDVR",
-        "-DisableStartRecommended",
-        "-ExplorerToThisPC",
-        "-DisableMouseAcceleration",
-        "-DisableDesktopSpotlight",
-        "-DisableSettings365Ads",
-        "-DisableSettingsHome",
-        "-DisablePaintAI",
-        "-DisableNotepadAI",
-        "-DisableStickyKeys"};
-                string arguments = "&([scriptblock]::Create((irm \"https://debloat.raphi.re/\"))) -RunDefaults" + string.Join(" ", args);
-                Process.Start(new ProcessStartInfo()
-                {
-                    FileName = Environment.ExpandEnvironmentVariables("%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"),
-                    Arguments = arguments,
-                    RedirectStandardOutput = false,
-                    UseShellExecute = true,
-                    CreateNoWindow = false,
-                    Verb = "runas"
-                });
-                //var psi = new ProcessStartInfo
-                //{
-                //    FileName = Environment.ExpandEnvironmentVariables("%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"),
-                //    Arguments = "& ([scriptblock]::Create((irm \"https://debloat.raphi.re/\")))",
-                //    RedirectStandardOutput = false,
-                //    RedirectStandardInput = true,
-                //    UseShellExecute = false,
-                //    CreateNoWindow = false,
+                var arguments = "&([scriptblock]::Create((irm \"https://debloat.raphi.re/\"))) -RunDefaults " +
+                                string.Join(" ", debloatArgs);
 
-                //};
+                ProcessHelper.RunElevatedPowerShellRaw(arguments);
 
-                //var p = Process.Start(psi);
-
-
-                //p.StandardInput.WriteLine("1");
-
-
-
-                //p.StandardInput.WriteLine("1");
-
-                //p.StandardInput.WriteLine("");
-
-                //p.StandardInput.Close();
-                var prcss = new ProcessStartInfo()
-                {
-                    FileName = Environment.ExpandEnvironmentVariables("%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"),
-                    Arguments = "iwr -useb https://christitus.com/win | iex",
-                    RedirectStandardOutput = false,
-                    UseShellExecute = true,
-                    CreateNoWindow = true,
-                    Verb = "runas"
-                };
-                var proc1 = Process.Start(prcss);
-                proc1.Kill();
-                string str = Path.Combine(Path.GetTempPath(), "Debloat.json");
-                File.WriteAllBytes(str, Moscovium_Lite.Properties.Resources.Debloat);
-                this.RunProcess("irm 'https://christitus.com/win' -OutFile \"$env:TEMP\\winutil.ps1\"");
-                Thread.Sleep(1500);
-                this.RunProcess("& \"$env:TEMP\\winutil.ps1\" -Config '[path-to-your-config]' -Run".Replace("[path-to-your-config]", str));
+                MessageDisplay msd = new MessageDisplay("Moscovium Lite", "Raphi debloat script has been launched.");
+                msd.ShowDialog();
             }
-            else if (questionForm.Answer == "DB")
+            catch (Exception ex)
             {
-                string[] args = {"-Silent",
-        "-RemoveApps",
-        "-RemoveGamingApps",
-        "-DisableTelemetry",
-        "-DisableBing",
-        "-DisableSuggestions",
-        "-DisableLockscreenTips",
-        "-RevertContextMenu",
-        "-TaskbarAlignLeft",
-        "-HideSearchTb",
-        "-DisableWidgets",
-        "-DisableCopilot",
-        "-ClearStartAllUsers",
-        "-DisableDVR",
-        "-DisableStartRecommended",
-        "-ExplorerToThisPC",
-        "-DisableMouseAcceleration",
-        "-DisableDesktopSpotlight",
-        "-DisableSettings365Ads",
-        "-DisableSettingsHome",
-        "-DisablePaintAI",
-        "-DisableNotepadAI",
-        "-DisableStickyKeys"};
-                string arguments = "&([scriptblock]::Create((irm \"https://debloat.raphi.re/\"))) -RunDefaults" + string.Join(" ", args);
-                Process.Start(new ProcessStartInfo()
-                {
-                    FileName = Environment.ExpandEnvironmentVariables("%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"),
-                    Arguments = arguments,
-                    RedirectStandardOutput = false,
-                    UseShellExecute = true,
-                    CreateNoWindow = false,
-                    Verb = "runas"
-                });
-                var prcss = new ProcessStartInfo()
-                {
-                    FileName = Environment.ExpandEnvironmentVariables("%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"),
-                    Arguments = "iwr -useb https://christitus.com/win | iex",
-                    RedirectStandardOutput = false,
-                    UseShellExecute = true,
-                    CreateNoWindow = true,
-                    Verb = "runas"
-                };
-                var proc1 = Process.Start(prcss);
-                proc1.Kill();
-
-
-
-                string str = Path.Combine(Path.GetTempPath(), "Debloat.json");
-                File.WriteAllBytes(str, Moscovium_Lite.Properties.Resources.Debloat);
-                this.RunProcess("irm 'https://christitus.com/win' -OutFile \"$env:TEMP\\winutil.ps1\"");
-                Thread.Sleep(1500);
-                this.RunProcess("& \"$env:TEMP\\winutil.ps1\" -Config '[path-to-your-config]' -Run".Replace("[path-to-your-config]", str));
-            }
-            else if (questionForm.Answer == "empty")
-            {
-                MessageDisplay msg = new MessageDisplay("Debloat Script", "Debloat Script cancelled!");
-                msg.ShowDialog();
-
-            }
-            else if (questionForm.Answer == "DBS")
-            {
-                string SAB = Path.Combine(Path.GetTempPath(), "startallback.ps1");
-                File.WriteAllBytes(SAB, Moscovium_Lite.Properties.Resources.StartAllBack);
-                
-
-                var startInfo = new ProcessStartInfo()
-                {
-                    FileName = "powershell.exe",
-                    Arguments = $"-NoProfile -ExecutionPolicy ByPass -File \"{SAB}\"",
-                    UseShellExecute = false,
-                    Verb = "runas"
-                };
-                Process.Start(startInfo);
-
-
-
-
-                string[] args = {"-Silent",
-        "-RemoveApps",
-        "-RemoveGamingApps",
-        "-DisableTelemetry",
-        "-DisableBing",
-        "-DisableSuggestions",
-        "-DisableLockscreenTips",
-        "-RevertContextMenu",
-        "-TaskbarAlignLeft",
-        "-HideSearchTb",
-        "-DisableWidgets",
-        "-DisableCopilot",
-        "-ClearStartAllUsers",
-        "-DisableDVR",
-        "-DisableStartRecommended",
-        "-ExplorerToThisPC",
-        "-DisableMouseAcceleration",
-        "-DisableDesktopSpotlight",
-        "-DisableSettings365Ads",
-        "-DisableSettingsHome",
-        "-DisablePaintAI",
-        "-DisableNotepadAI",
-        "-DisableStickyKeys"};
-                string arguments = "&([scriptblock]::Create((irm \"https://debloat.raphi.re/\"))) -RunDefaults" + string.Join(" ", args);
-                Process.Start(new ProcessStartInfo()
-                {
-                    FileName = Environment.ExpandEnvironmentVariables("%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"),
-                    Arguments = arguments,
-                    RedirectStandardOutput = false,
-                    UseShellExecute = true,
-                    CreateNoWindow = false,
-                    Verb = "runas"
-                });
-                //var psi = new ProcessStartInfo
-                //{
-                //    FileName = Environment.ExpandEnvironmentVariables("%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"),
-                //    Arguments = "& ([scriptblock]::Create((irm \"https://debloat.raphi.re/\")))",
-                //    RedirectStandardOutput = false,
-                //    RedirectStandardInput = true,
-                //    UseShellExecute = false,
-                //    CreateNoWindow = false,
-
-                //};
-
-                //var p = Process.Start(psi);
-
-
-                //p.StandardInput.WriteLine("1");
-
-
-
-                //p.StandardInput.WriteLine("1");
-
-                //p.StandardInput.WriteLine("");
-
-                //p.StandardInput.Close();
-                var prcss = new ProcessStartInfo()
-                {
-                    FileName = Environment.ExpandEnvironmentVariables("%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"),
-                    Arguments = "iwr -useb https://christitus.com/win | iex",
-                    RedirectStandardOutput = false,
-                    UseShellExecute = true,
-                    CreateNoWindow = true,
-                    Verb = "runas"
-                };
-                var proc1 = Process.Start(prcss);
-                proc1.Kill();
-                string str = Path.Combine(Path.GetTempPath(), "Debloat.json");
-                File.WriteAllBytes(str, Moscovium_Lite.Properties.Resources.Debloat);
-                this.RunProcess("irm 'https://christitus.com/win' -OutFile \"$env:TEMP\\winutil.ps1\"");
-                Thread.Sleep(1500);
-                this.RunProcess("& \"$env:TEMP\\winutil.ps1\" -Config '[path-to-your-config]' -Run".Replace("[path-to-your-config]", str));
+                MessageDisplay msd = new MessageDisplay("Moscovium Lite Error", $"Failed to run Raphi debloat: {ex.Message}");
+                msd.ShowDialog();
             }
         }
 
@@ -542,7 +325,130 @@ namespace Moscovium_Lite
 
         private void button9_Click(object sender, EventArgs e)
         {
-          
+
+
+        }
+
+        private async void button9_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                var debloatJson = Path.Combine(Path.GetTempPath(), "Debloat.json");
+                File.WriteAllBytes(debloatJson, Properties.Resources.DebloatScript);
+
+                ProcessHelper.RunPowerShellCommand("irm 'https://christitus.com/win' -OutFile \"$env:TEMP\\winutil.ps1\"");
+
+                // Short delay to ensure download
+                await Task.Delay(2000);
+
+                ProcessHelper.RunPowerShellCommand($"& \"$env:TEMP\\winutil.ps1\" -Config '{debloatJson}' -Run");
+                InfoDisplay infoDisplay = new InfoDisplay("Chris Titus WinUtil", "Chris Titus WinUtil (Automated) has been launched.");
+                infoDisplay.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                MessageDisplay msd = new MessageDisplay("Moscovium Lite Error", $"Failed to run Chris Titus WinUtil: {ex.Message}");
+                msd.ShowDialog();
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProcessHelper.RunElevated("bcdedit", "/set disabledynamictick yes");
+
+                InfoDisplay infoDisplay = new InfoDisplay("Dynamic Tick Disabled", "The command 'bcdedit /set disabledynamictick yes' has been executed.\nA system restart is recommended for changes to take full effect.");
+                infoDisplay.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                MessageDisplay msd = new MessageDisplay("Moscovium Lite Error", $"Failed to execute command: {ex.Message}");
+                msd.ShowDialog();
+
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                RegistryHelper.SetWin32PrioritySeparation(22);
+                InfoDisplay infoDisplay = new InfoDisplay("Win32PrioritySeparation Set", "Win32PrioritySeparation has been set to 22 (Decimal). \nA restart might be required for changes to take full effect.");
+                infoDisplay.ShowDialog();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageDisplay msd = new MessageDisplay("Moscovium Lite Error", $"Failed to set Win32PrioritySeparation: {ex.Message}");
+                msd.ShowDialog();
+
+            }
+        }
+
+        private async void button12_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var SAB = Path.Combine(Path.GetTempPath(), "StartAllBack.ps1");
+                File.WriteAllBytes(SAB, Properties.Resources.StartAllBackPs1);
+                if (System.IO.File.Exists(SAB))
+                {
+                    // Run hidden/separate process to verify
+                    var proc = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = "powershell.exe",
+                        Arguments = $"-ExecutionPolicy Bypass -File \"{SAB}\"",
+                        UseShellExecute = true,
+                        Verb = "runas"
+                    });
+                    if (proc != null)
+                    {
+                        await System.Threading.Tasks.Task.Run(() => proc.WaitForExit());
+                        RestartStuff restartStuff = new RestartStuff();
+                        restartStuff.ShowDialog();
+                        if (restartStuff.Answer == "restart")
+                        {
+                            System.Diagnostics.Process.Start("shutdown", "/r /t 0");
+                        }
+                    }
+
+
+                }
+                else
+                {
+                    MessageDisplay msd = new MessageDisplay("Moscovium Lite Error", "StartAllBack.ps1 not found.");
+                    msd.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageDisplay msd = new MessageDisplay("Moscovium Lite Error", $"Failed to run script: {ex.Message}");
+                msd.ShowDialog();
+                return;
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label3.Text = DateTime.Now.ToString("hh:mm");
+            label4.Text = DateTime.Now.ToString("D");
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo()
+            {
+                FileName = Environment.ExpandEnvironmentVariables("%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"),
+                Arguments = "start control",
+                RedirectStandardOutput = false,
+                UseShellExecute = true,
+                CreateNoWindow = true,
+                Verb = "runas"
+            });
 
         }
     }

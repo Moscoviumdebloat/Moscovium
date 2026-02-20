@@ -19,7 +19,7 @@ namespace Moscovium_Lite
                
             }
 
-            Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetCompatibleTextRenderingDefault(true);
             Application.Run(new Form1());
         }
     }

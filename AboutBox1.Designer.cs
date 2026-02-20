@@ -101,7 +101,7 @@
             labelVersion.Name = "labelVersion";
             labelVersion.Size = new Size(435, 26);
             labelVersion.TabIndex = 0;
-            labelVersion.Text = "V1.1";
+            labelVersion.Text = "V1.2";
             labelVersion.TextAlign = ContentAlignment.MiddleLeft;
             labelVersion.Click += labelVersion_Click;
             // 

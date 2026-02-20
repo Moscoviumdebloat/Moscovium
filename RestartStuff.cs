@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Moscovium_Lite
 {
-
-    public partial class QuestionForm : Form
+    public partial class RestartStuff : Form
     {
+
         public string YNswer = "empty";
         public string Answer => YNswer;
 
@@ -62,26 +62,22 @@ namespace Moscovium_Lite
             }
         }
 
-        public QuestionForm()
+
+        public RestartStuff()
         {
             InitializeComponent();
             ApplyRetroFont(this);
         }
 
-        private void QuestionForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            YNswer = "DB";
+            YNswer = "restart";
             this.Close();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -99,19 +95,13 @@ namespace Moscovium_Lite
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            YNswer = "DBS";
+            YNswer = "later";
             this.Close();
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            YNswer = "DBA";
-            this.Close();
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

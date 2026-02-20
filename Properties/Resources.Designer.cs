@@ -83,6 +83,16 @@ namespace Moscovium_Lite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] DebloatScript {
+            get {
+                object obj = ResourceManager.GetObject("DebloatScript", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] ep_setup {
             get {
                 object obj = ResourceManager.GetObject("ep_setup", resourceCulture);
@@ -146,6 +156,16 @@ namespace Moscovium_Lite.Properties {
         internal static byte[] StartAllBack {
             get {
                 object obj = ResourceManager.GetObject("StartAllBack", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] StartAllBackPs1 {
+            get {
+                object obj = ResourceManager.GetObject("StartAllBackPs1", resourceCulture);
                 return ((byte[])(obj));
             }
         }

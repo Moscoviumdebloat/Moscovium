@@ -49,7 +49,8 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(419, 47);
             panel1.TabIndex = 14;
-            panel1.MouseDown += panel1_MouseDown;
+            
+            panel1.MouseDown += this.panel1_MouseDown;
             // 
             // button3
             // 
@@ -60,7 +61,7 @@
             button3.TabIndex = 4;
             button3.Text = "Cancel";
             button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            button3.Click += this.button3_Click;
             // 
             // label1
             // 
@@ -72,6 +73,7 @@
             label1.Size = new Size(125, 25);
             label1.TabIndex = 0;
             label1.Text = "Debloat Script";
+            
             // 
             // pictureBox1
             // 
@@ -82,6 +84,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 15;
             pictureBox1.TabStop = false;
+          
             // 
             // richTextBox1
             // 
@@ -94,6 +97,7 @@
             richTextBox1.Size = new Size(251, 102);
             richTextBox1.TabIndex = 19;
             richTextBox1.Text = "Would you also like to install Explorer Patcher, OpenShell, and Nilesoft Shell with the debloat script, or StartAllBack with the debloat script, or just the debloat script?";
+            richTextBox1.TextChanged += this.richTextBox1_TextChanged;
             // 
             // button1
             // 
@@ -106,7 +110,7 @@
             button1.TabIndex = 20;
             button1.Text = "Debloat";
             button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            button1.Click += this.button1_Click;
             // 
             // button4
             // 
@@ -119,7 +123,7 @@
             button4.TabIndex = 22;
             button4.Text = "Debloat\r\n + SAB";
             button4.UseVisualStyleBackColor = false;
-            button4.Click += button4_Click;
+            button4.Click += this.button4_Click;
             // 
             // button2
             // 
@@ -132,7 +136,7 @@
             button2.TabIndex = 23;
             button2.Text = "Debloat + EP, OP, NS";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click_1;
+            button2.Click += this.button2_Click_1;
             // 
             // QuestionForm
             // 
