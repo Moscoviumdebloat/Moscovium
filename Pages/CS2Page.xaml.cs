@@ -114,4 +114,11 @@ public sealed partial class CS2Page : Page
         };
         await dialog.ShowAsync();
     }
+    private async void CopyLaunchOptions_Click(object sender, RoutedEventArgs e)
+    {
+        var dataPackage = new DataPackage();
+        dataPackage.SetText("-high -novid -allow_third_party_software -tickrate 128 -noaafonts");
+        Clipboard.SetContent(dataPackage);
+        await ShowInfo("Launch options copied to clipboard.");
+    }
 }

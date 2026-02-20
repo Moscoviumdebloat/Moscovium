@@ -7,7 +7,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59e9288b-7c04-400b-998f-2a5ed578cdef" name="Changes" comment="" />
+    <list default="true" id="59e9288b-7c04-400b-998f-2a5ed578cdef" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MoscoviumThree/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MoscoviumThree/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helpers/RegistryHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/RegistryHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/MainWindow.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MainWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MoscoviumThree.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MoscoviumThree.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/CS2Page.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/CS2Page.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/CS2Page.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/CS2Page.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/HomePage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/HomePage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/HomePage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/HomePage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/OptimizationsPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/OptimizationsPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer.iss" beforeDir="false" afterPath="$PROJECT_DIR$/installer.iss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portable.iss" beforeDir="false" afterPath="$PROJECT_DIR$/portable.iss" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +30,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="6" />
+    <option name="cachedIndexableFilesCount" value="9" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -47,37 +60,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.MoscoviumThree.executor&quot;: &quot;Run&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.MoscoviumThree.executor": "Run",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "0d570cb2-96df-43cc-80da-7f777e6d0afe",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1773252031319" />
-    <option name="spentUsd" value="0.01624205" />
+    <option name="spentUsd" value="0.0615544" />
   </component>
   <component name="RecapUselessUpdatesCounter">
-    <option name="suspendCountdown" value="5" />
+    <option name="suspendCountdown" value="0" />
   </component>
   <component name="RunManager" selected=".NET Project.MoscoviumThree">
     <configuration name="MoscoviumThree" type="DotNetProject" factoryName=".NET Project">
@@ -121,6 +134,8 @@
       <workItem from="1771422814500" duration="493000" />
       <workItem from="1771446952577" duration="2299000" />
       <workItem from="1771456698317" duration="41000" />
+      <workItem from="1771532324515" duration="7366000" />
+      <workItem from="1771544392408" duration="3351000" />
     </task>
     <servers />
   </component>

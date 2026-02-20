@@ -139,6 +139,10 @@ public sealed partial class MainWindow : Window
                     ContentFrame.Navigate(typeof(CS2Page));
                     break;
 
+                case "customization":
+                    ContentFrame.Navigate(typeof(CustomizationPage));
+                    break;
+
                 case "about":
                     ContentFrame.Navigate(typeof(AboutPage));
                     break;

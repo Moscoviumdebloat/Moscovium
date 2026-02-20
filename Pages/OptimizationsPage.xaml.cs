@@ -123,12 +123,14 @@ public sealed partial class OptimizationsPage : Page
     {
         try
         {
-            RegistryHelper.SetWin32PrioritySeparation(22);
-            await ShowInfo("Win32PrioritySeparation has been set to 22 (Decimal). \nA restart might be required for changes to take full effect.");
+            // Dictionary tweak: Use reg.exe to handle elevation prompts automatically
+            ProcessHelper.RunElevated("reg", "add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\PriorityControl\" /v Win32PrioritySeparation /t REG_DWORD /d 22 /f");
+            
+            await ShowInfo("Registry command executed.\nA restart is required for changes to take effect.");
         }
         catch (Exception ex)
         {
-            await ShowError($"Failed to set registry value: {ex.Message}");
+            await ShowError($"Failed to launch registry command: {ex.Message}");
         }
     }
 

@@ -36,6 +36,12 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
+                <NavigationViewItem Content="Customization" Tag="customization">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE771;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
                 <NavigationViewItem Content="Counter-Strike 2" Tag="cs2">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE7FC;" />

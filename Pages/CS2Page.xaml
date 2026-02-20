@@ -49,6 +49,32 @@
                                HorizontalAlignment="Center" />
                 </StackPanel>
             </Border>
+
+
+            <!-- Launch Options Reminder -->
+            <TextBlock Text="Recommended Launch Options" Style="{StaticResource SectionHeaderStyle}" Margin="0,24,0,0" />
+            
+            <Grid Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" Padding="16" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox Text="-high -novid -allow_third_party_software -tickrate 128 -noaafonts" 
+                         IsReadOnly="True" VerticalAlignment="Center" FontFamily="Consolas" />
+                <Button Content="Copy" Margin="12,0,0,0" Grid.Column="1" Click="CopyLaunchOptions_Click" />
+            </Grid>
+
+            <!-- Steam Properties Tutorial -->
+            <Expander Header="How to set Launch Options in Steam" Margin="0,12,0,0" HorizontalAlignment="Stretch" IsExpanded="False">
+                <StackPanel Padding="0,12,0,0" Spacing="8">
+                    <TextBlock Text="1. Open Steam and go to your Library." Style="{StaticResource BodyTextBlockStyle}" />
+                    <TextBlock Text="2. Right-click on 'Counter-Strike 2' and select 'Properties...'." Style="{StaticResource BodyTextBlockStyle}" />
+                    <TextBlock Text="3. In the 'General' tab, find the 'Launch Options' section at the bottom." Style="{StaticResource BodyTextBlockStyle}" />
+                    <TextBlock Text="4. Paste the commands above into the text box." Style="{StaticResource BodyTextBlockStyle}" />
+                    <TextBlock Text="5. Close the window and launch the game." Style="{StaticResource BodyTextBlockStyle}" />
+                </StackPanel>
+            </Expander>
+
         </StackPanel>
     </ScrollViewer>
 </Page>

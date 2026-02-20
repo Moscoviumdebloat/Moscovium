@@ -32,12 +32,24 @@ public sealed partial class HomePage : Page
             Title = "Wallpaper Settings",
             Content = styleCombo,
             PrimaryButtonText = "Choose Image",
+            SecondaryButtonText = "Control Panel",
             CloseButtonText = "Cancel",
             DefaultButton = ContentDialogButton.Primary,
             XamlRoot = this.XamlRoot
         };
 
         var result = await dialog.ShowAsync();
+
+        if (result == ContentDialogResult.Secondary)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo("powershell.exe", "-NoExit -Command control") { UseShellExecute = true });
+            }
+            catch { }
+            return;
+        }
+
         if (result != ContentDialogResult.Primary) return;
 
         var selectedStyle = styleCombo.SelectedItem?.ToString() ?? "Fill";
