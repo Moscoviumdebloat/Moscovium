@@ -118,20 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="nilesoft_shell" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\setup-x64.msi;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="LiteInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LiteInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ep_setup" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ep_setup.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="About" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\About.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Debloat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Debloat.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="LiteX" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LiteX.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,14 +130,8 @@
   <data name="VisualC" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Visual-C-Runtimes-All-in-One-Nov-2025.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="OpenShell" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OpenShellSetup_4_4_196.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="LiteQuestion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LiteQuestion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="StartAllBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\StartAllBack.ps1;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="DebloatScript" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Debloat.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

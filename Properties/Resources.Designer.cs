@@ -73,29 +73,9 @@ namespace Moscovium_Lite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Debloat {
-            get {
-                object obj = ResourceManager.GetObject("Debloat", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         internal static byte[] DebloatScript {
             get {
                 object obj = ResourceManager.GetObject("DebloatScript", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ep_setup {
-            get {
-                object obj = ResourceManager.GetObject("ep_setup", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -127,36 +107,6 @@ namespace Moscovium_Lite.Properties {
             get {
                 object obj = ResourceManager.GetObject("LiteX", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] nilesoft_shell {
-            get {
-                object obj = ResourceManager.GetObject("nilesoft_shell", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] OpenShell {
-            get {
-                object obj = ResourceManager.GetObject("OpenShell", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] StartAllBack {
-            get {
-                object obj = ResourceManager.GetObject("StartAllBack", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
