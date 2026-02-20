@@ -14,21 +14,20 @@ public sealed partial class CustomizationPage : Page
 
     private void InstallOpenShell_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Implement OpenShell installation logic (e.g., download and run installer silently)
-        // For now, we'll open the GitHub release page as a placeholder
-        OpenUrl("https://github.com/Open-Shell/Open-Shell-Menu/releases");
+        string installerPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Bundled", "OpenShellSetup_4_4_196.exe");
+        RunInstaller(installerPath);
     }
 
     private void InstallNileSoft_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Implement NileSoft Shell installation logic
-        // Placeholder: Open website
-        OpenUrl("https://nilesoft.org/");
+        string installerPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Bundled", "setup-x64.msi");
+        RunInstaller(installerPath);
     }
 
     private void InstallStartAllBack_Click(object sender, RoutedEventArgs e)
     {
-        OpenUrl("https://www.startallback.com/");
+        string installerPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Bundled", "StartAllBackSetup.exe");
+        RunInstaller(installerPath);
     }
 
     private void ResetStartAllBack_Click(object sender, RoutedEventArgs e)
@@ -53,7 +52,8 @@ public sealed partial class CustomizationPage : Page
 
     private void InstallExplorerPatcher_Click(object sender, RoutedEventArgs e)
     {
-        OpenUrl("https://github.com/valinet/ExplorerPatcher/releases");
+        string installerPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Bundled", "ep_setup.exe");
+        RunInstaller(installerPath);
     }
 
     private void OpenUrl(string url)
@@ -63,5 +63,24 @@ public sealed partial class CustomizationPage : Page
             Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
         }
         catch { }
+    }
+
+    private void RunInstaller(string path)
+    {
+        if (File.Exists(path))
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to run installer: {ex.Message}");
+            }
+        }
+        else
+        {
+             Debug.WriteLine($"Installer not found at: {path}");
+        }
     }
 }

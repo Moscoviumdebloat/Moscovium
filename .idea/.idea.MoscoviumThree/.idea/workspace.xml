@@ -9,15 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="59e9288b-7c04-400b-998f-2a5ed578cdef" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MoscoviumThree/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MoscoviumThree/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helpers/RegistryHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/RegistryHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/MainWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoscoviumThree.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MoscoviumThree.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/CS2Page.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/CS2Page.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/CS2Page.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/CS2Page.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/HomePage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/HomePage.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/HomePage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/HomePage.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/OptimizationsPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/OptimizationsPage.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/installer.iss" beforeDir="false" afterPath="$PROJECT_DIR$/installer.iss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portable.iss" beforeDir="false" afterPath="$PROJECT_DIR$/portable.iss" afterDir="false" />
     </list>
@@ -135,7 +126,7 @@
       <workItem from="1771446952577" duration="2299000" />
       <workItem from="1771456698317" duration="41000" />
       <workItem from="1771532324515" duration="7366000" />
-      <workItem from="1771544392408" duration="3351000" />
+      <workItem from="1771544392408" duration="5790000" />
     </task>
     <servers />
   </component>
