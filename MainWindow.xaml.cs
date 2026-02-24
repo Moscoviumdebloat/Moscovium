@@ -80,7 +80,7 @@ public sealed partial class MainWindow : Window
         appWindow.Resize(new SizeInt32(960, 640));
 
         // Set title bar
-        appWindow.Title = "Moscovium v3.1.1";
+        appWindow.Title = "Moscovium v3.2.0";
 
         // Try to set the icon
         try
@@ -141,6 +141,10 @@ public sealed partial class MainWindow : Window
 
                 case "customization":
                     ContentFrame.Navigate(typeof(CustomizationPage));
+                    break;
+
+                case "cursors":
+                    ContentFrame.Navigate(typeof(CursorsPage));
                     break;
 
                 case "about":

@@ -13,8 +13,8 @@
     <ApplicationIcon>Assets\Logo.ico</ApplicationIcon>
     <RootNamespace>MoscoviumThree</RootNamespace>
     <AssemblyName>MoscoviumThree</AssemblyName>
-    <AssemblyVersion>3.2.2.0</AssemblyVersion>
-    <FileVersion>3.2.2.0</FileVersion>
+    <AssemblyVersion>3.2.0.0</AssemblyVersion>
+    <FileVersion>3.2.0.0</FileVersion>
     <Company>Unknown Cyberia</Company>
     <Product>Moscovium</Product>
     <Authors>Yabosen, Akumarin, Bendy (Megamer Studios)</Authors>
@@ -42,6 +42,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Bundled\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Cursors\**\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
