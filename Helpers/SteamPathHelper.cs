@@ -10,33 +10,36 @@ public static class SteamPathHelper
     /// <summary>
     /// Find all CS2 cfg directories across all drives.
     /// </summary>
-    public static List<string> FindCfgFolders()
+    public static async Task<List<string>> FindCfgFoldersAsync()
     {
-        var folders = new List<string>();
-
-        // Check default Steam path
-        var defaultPath = @"C:\Program Files (x86)\Steam\" + CS2_CFG_RELATIVE;
-        if (Directory.Exists(defaultPath))
-            folders.Add(defaultPath);
-
-        // Search all drives for Steam installations
-        foreach (var drive in DriveInfo.GetDrives().Where(d => d.IsReady))
+        return await Task.Run(() =>
         {
-            try
+            var folders = new List<string>();
+
+            // Check default Steam path
+            var defaultPath = @"C:\Program Files (x86)\Steam\" + CS2_CFG_RELATIVE;
+            if (Directory.Exists(defaultPath))
+                folders.Add(defaultPath);
+
+            // Search all drives for Steam installations
+            foreach (var drive in DriveInfo.GetDrives().Where(d => d.IsReady))
             {
-                foreach (var steamDir in Directory.GetDirectories(drive.RootDirectory.FullName, "Steam", SearchOption.TopDirectoryOnly))
+                try
                 {
-                    var cfgPath = Path.Combine(steamDir, CS2_CFG_RELATIVE);
-                    if (Directory.Exists(cfgPath) && !folders.Contains(cfgPath))
-                        folders.Add(cfgPath);
+                    foreach (var steamDir in Directory.GetDirectories(drive.RootDirectory.FullName, "Steam", SearchOption.TopDirectoryOnly))
+                    {
+                        var cfgPath = Path.Combine(steamDir, CS2_CFG_RELATIVE);
+                        if (Directory.Exists(cfgPath) && !folders.Contains(cfgPath))
+                            folders.Add(cfgPath);
+                    }
+                }
+                catch
+                {
+                    // Skip drives/folders we can't access
                 }
             }
-            catch
-            {
-                // Skip drives/folders we can't access
-            }
-        }
 
-        return folders;
+            return folders;
+        });
     }
 }

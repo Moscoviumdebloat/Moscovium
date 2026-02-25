@@ -20,7 +20,7 @@ public sealed partial class CS2Page : Page
 
     private async void BtnYaboCfg_Click(object sender, RoutedEventArgs e)
     {
-        var folders = SteamPathHelper.FindCfgFolders();
+        var folders = await SteamPathHelper.FindCfgFoldersAsync();
         if (folders.Count == 0)
         {
             await ShowError("Could not find CS2 cfg folder.");
@@ -62,7 +62,7 @@ public sealed partial class CS2Page : Page
         if (!e.DataView.Contains(StandardDataFormats.StorageItems)) return;
 
         var items = await e.DataView.GetStorageItemsAsync();
-        var folders = SteamPathHelper.FindCfgFolders();
+        var folders = await SteamPathHelper.FindCfgFoldersAsync();
 
         if (folders.Count == 0)
         {
