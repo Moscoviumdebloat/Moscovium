@@ -106,6 +106,42 @@ public sealed partial class CursorsPage : Page
         }
     }
 
+    // ─── Custom Cursor Picker ─────────────────────────────────
+
+    private readonly Dictionary<string, string> _customCursorFiles = new();
+
+    private async void PickCursorFile_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button btn || btn.Tag is not string cursorName) return;
+
+        var picker = new Windows.Storage.Pickers.FileOpenPicker();
+        picker.FileTypeFilter.Add(".cur");
+        picker.FileTypeFilter.Add(".ani");
+
+        var window = App.m_window;
+        if (window == null) return;
+
+        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+        WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+
+        var file = await picker.PickSingleFileAsync();
+        if (file == null) return;
+
+        _customCursorFiles[cursorName] = file.Path;
+        btn.Content = $"{cursorName}: {file.Name}";
+    }
+
+    private void ApplyCustomCursors_Click(object sender, RoutedEventArgs e)
+    {
+        if (_customCursorFiles.Count == 0)
+        {
+            ShowStatus("No cursor files selected. Click the buttons above to pick files.", InfoBarSeverity.Warning);
+            return;
+        }
+
+        ApplyCursorScheme("Moscovium Custom", _customCursorFiles);
+    }
+
     // ─── Cursor Mapping Builders ────────────────────────────────
 
     /// <summary>

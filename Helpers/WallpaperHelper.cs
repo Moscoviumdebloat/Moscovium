@@ -32,7 +32,9 @@ public static class WallpaperHelper
         image.Save(bmpPath, ImageFormat.Bmp);
 
         // Set registry values for wallpaper style
-        using var key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop", true)!;
+        using var key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop", true);
+        if (key == null)
+            throw new InvalidOperationException("Unable to access Desktop registry key.");
 
         var (wallpaperStyle, tileWallpaper) = style switch
         {

@@ -62,14 +62,11 @@ public sealed partial class HomePage : Page
         picker.FileTypeFilter.Add(".png");
 
         // Initialize picker with window handle
-        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.Current as App != null
-            ? ((App)App.Current).GetType().GetField("m_window",
-                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-                ?.GetValue(App.Current) as Microsoft.UI.Xaml.Window
-            : null);
+        var window = App.m_window;
+        if (window == null) return;
 
-        if (hwnd != IntPtr.Zero)
-            WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+        WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
 
         var file = await picker.PickSingleFileAsync();
         if (file == null) return;

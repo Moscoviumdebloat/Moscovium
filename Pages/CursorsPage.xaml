@@ -154,9 +154,92 @@
 
             <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" Margin="0,24" />
 
+            <!-- Custom Cursors Section -->
+            <TextBlock Text="Custom Cursors" Style="{StaticResource SectionHeaderStyle}" />
+            <TextBlock Text="Pick your own cursor files (.cur / .ani) for each cursor type and apply them as a custom scheme."
+                       Style="{StaticResource BodyTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Margin="0,0,0,12" />
+
+            <Grid ColumnSpacing="12" RowSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Row 0 -->
+                <Button x:Name="BtnPickArrow" Content="Arrow: (none)" Click="PickCursorFile_Click" Tag="Arrow"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="0" Grid.Column="0" />
+                <Button x:Name="BtnPickHelp" Content="Help: (none)" Click="PickCursorFile_Click" Tag="Help"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="0" Grid.Column="1" />
+                <!-- Row 1 -->
+                <Button x:Name="BtnPickAppStarting" Content="AppStarting: (none)" Click="PickCursorFile_Click" Tag="AppStarting"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="1" Grid.Column="0" />
+                <Button x:Name="BtnPickWait" Content="Wait: (none)" Click="PickCursorFile_Click" Tag="Wait"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="1" Grid.Column="1" />
+                <!-- Row 2 -->
+                <Button x:Name="BtnPickCrosshair" Content="Crosshair: (none)" Click="PickCursorFile_Click" Tag="Crosshair"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="2" Grid.Column="0" />
+                <Button x:Name="BtnPickIBeam" Content="IBeam: (none)" Click="PickCursorFile_Click" Tag="IBeam"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="2" Grid.Column="1" />
+                <!-- Row 3 -->
+                <Button x:Name="BtnPickNWPen" Content="NWPen: (none)" Click="PickCursorFile_Click" Tag="NWPen"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="3" Grid.Column="0" />
+                <Button x:Name="BtnPickNo" Content="No: (none)" Click="PickCursorFile_Click" Tag="No"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="3" Grid.Column="1" />
+                <!-- Row 4 -->
+                <Button x:Name="BtnPickSizeNS" Content="SizeNS: (none)" Click="PickCursorFile_Click" Tag="SizeNS"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="4" Grid.Column="0" />
+                <Button x:Name="BtnPickSizeWE" Content="SizeWE: (none)" Click="PickCursorFile_Click" Tag="SizeWE"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="4" Grid.Column="1" />
+                <!-- Row 5 -->
+                <Button x:Name="BtnPickSizeNWSE" Content="SizeNWSE: (none)" Click="PickCursorFile_Click" Tag="SizeNWSE"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="5" Grid.Column="0" />
+                <Button x:Name="BtnPickSizeNESW" Content="SizeNESW: (none)" Click="PickCursorFile_Click" Tag="SizeNESW"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="5" Grid.Column="1" />
+                <!-- Row 6 -->
+                <Button x:Name="BtnPickSizeAll" Content="SizeAll: (none)" Click="PickCursorFile_Click" Tag="SizeAll"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="6" Grid.Column="0" />
+                <Button x:Name="BtnPickUpArrow" Content="UpArrow: (none)" Click="PickCursorFile_Click" Tag="UpArrow"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="6" Grid.Column="1" />
+                <!-- Row 7 -->
+                <Button x:Name="BtnPickHand" Content="Hand: (none)" Click="PickCursorFile_Click" Tag="Hand"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="7" Grid.Column="0" />
+                <Button x:Name="BtnPickPerson" Content="Person: (none)" Click="PickCursorFile_Click" Tag="Person"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="7" Grid.Column="1" />
+                <!-- Row 8 -->
+                <Button x:Name="BtnPickPin" Content="Pin: (none)" Click="PickCursorFile_Click" Tag="Pin"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="8" Grid.Column="0" />
+            </Grid>
+
+            <Button Style="{StaticResource ActionCardStyle}" Click="ApplyCustomCursors_Click" HorizontalAlignment="Stretch" Margin="0,12,0,0">
+                <Grid ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <FontIcon Glyph="&#xE74B;" FontSize="24" Grid.Column="0" VerticalAlignment="Center" />
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="Apply Custom Cursors" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Apply the selected cursor files as a custom scheme." Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </Grid>
+            </Button>
+
+            <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" Margin="0,24" />
+
             <!-- Restore Default Section -->
             <TextBlock Text="Reset" Style="{StaticResource SectionHeaderStyle}" />
-            <TextBlock Text="Restore the Windows default cursor scheme." 
+            <TextBlock Text="Restore the Windows default cursor scheme."
                        Style="{StaticResource BodyTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Margin="0,0,0,12" />
 
             <Button Style="{StaticResource ActionCardStyle}" Click="RestoreDefaultCursors_Click" HorizontalAlignment="Stretch">
