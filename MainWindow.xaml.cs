@@ -80,7 +80,7 @@ public sealed partial class MainWindow : Window
         appWindow.Resize(new SizeInt32(960, 640));
 
         // Set title bar
-        appWindow.Title = "Moscovium v3.3.0";
+        appWindow.Title = "Moscovium v3.4.0";
 
         // Try to set the icon
         try
@@ -157,6 +157,14 @@ public sealed partial class MainWindow : Window
 
                 case "optimizations":
                     ContentFrame.Navigate(typeof(OptimizationsPage));
+                    break;
+
+                case "csgo":
+                    ContentFrame.Navigate(typeof(CSGOPage));
+                    break;
+
+                case "legacymenus":
+                    ContentFrame.Navigate(typeof(LegacyMenusPage));
                     break;
 
                 // Settings is handled by IsSettingsSelected

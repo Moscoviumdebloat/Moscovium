@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="MoscoviumThree.Pages.LegacyMenusPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer Padding="36,24,36,24">
+        <StackPanel MaxWidth="800" HorizontalAlignment="Left" Spacing="4">
+
+            <!-- Header -->
+            <TextBlock Text="Legacy Menus" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,20" />
+            <TextBlock Text="Quick access to classic Windows settings panels." Style="{StaticResource BodyTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Margin="0,0,0,24" />
+
+            <!-- Control Panel -->
+            <Button x:Name="BtnControlPanel" Style="{StaticResource ActionCardStyle}" Click="BtnControlPanel_Click">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE770;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Control Panel" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Open the classic Windows Control Panel."
+                                   Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+
+            <!-- Services -->
+            <Button x:Name="BtnServices" Style="{StaticResource ActionCardStyle}" Click="BtnServices_Click">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE912;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Services" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Open the Windows Services management console."
+                                   Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+
+            <!-- Legacy Mouse Settings -->
+            <Button x:Name="BtnMouseSettings" Style="{StaticResource ActionCardStyle}" Click="BtnMouseSettings_Click">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE962;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Legacy Mouse Settings" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Open the classic Mouse Properties dialog."
+                                   Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+
+            <!-- Legacy Keyboard Settings -->
+            <Button x:Name="BtnKeyboardSettings" Style="{StaticResource ActionCardStyle}" Click="BtnKeyboardSettings_Click">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE765;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Legacy Keyboard Settings" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Open the classic Keyboard Properties dialog."
+                                   Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

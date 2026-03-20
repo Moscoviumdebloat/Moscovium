@@ -13,8 +13,8 @@
     <ApplicationIcon>Assets\Logo.ico</ApplicationIcon>
     <RootNamespace>MoscoviumThree</RootNamespace>
     <AssemblyName>MoscoviumThree</AssemblyName>
-    <AssemblyVersion>3.3.0.0</AssemblyVersion>
-    <FileVersion>3.3.0.0</FileVersion>
+    <AssemblyVersion>3.4.0.0</AssemblyVersion>
+    <FileVersion>3.4.0.0</FileVersion>
     <Company>Unknown Cyberia</Company>
     <Product>Moscovium</Product>
     <Authors>Yabosen, Akumarin, Bendy (Megamer Studios)</Authors>
