@@ -1,0 +1,59 @@
+name: Automate Velopack Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'MoscoviumThree.csproj' # Automate when the project file is changed
+  workflow_dispatch: # Allows manual runs
+
+permissions:
+  contents: write # Required for creating releases
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+        
+    - name: Extract Version from csproj
+      id: extract_version
+      shell: pwsh
+      run: |
+        $projContent = Get-Content "MoscoviumThree.csproj" -Raw
+        if ($projContent -match "(?i)<Version>(.*?)</Version>") {
+            $version = $matches[1]
+            Write-Output "Extracted Version: $version"
+            Write-Output "EXTRACTED_VERSION=$version" >> $env:GITHUB_ENV
+        } else {
+            Write-Error "Could not find <Version> tag in csproj!"
+            exit 1
+        }
+
+    - name: Publish the project
+      run: dotnet publish "MoscoviumThree.csproj" -c Release -r win-x64 --self-contained -o .\PublishOutput
+
+    - name: Install Velopack tool
+      run: dotnet tool install -g vpk
+
+    - name: Pack with Velopack
+      run: vpk pack -u Moscovium -v ${{ env.EXTRACTED_VERSION }} -p .\PublishOutput -e MoscoviumThree.exe -o .\Releases -i "Assets\Logo.ico" -t "Moscovium"
+
+    - name: Create GitHub Release and Upload Assets
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: "v${{ env.EXTRACTED_VERSION }}"
+        name: "Moscovium v${{ env.EXTRACTED_VERSION }}"
+        draft: false
+        prerelease: false
+        generate_release_notes: true
+        files: |
+          Releases/*
