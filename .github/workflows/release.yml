@@ -39,13 +39,26 @@ jobs:
         }
 
     - name: Publish the project
-      run: dotnet publish "MoscoviumThree.csproj" -c Release -r win-x64 --self-contained -o .\PublishOutput
+      run: dotnet publish "MoscoviumThree.csproj" -c Release -r win-x64 --self-contained -o ./PublishOutput
+
+    - name: List PublishOutput (Debug)
+      run: ls -R ./PublishOutput
 
     - name: Install Velopack tool
-      run: dotnet tool install -g vpk
+      run: |
+        dotnet tool install -g vpk
+        echo "C:\Users\runneradmin\.dotnet\tools" >> $env:GITHUB_PATH
 
     - name: Pack with Velopack
-      run: vpk pack -u Moscovium -v ${{ env.EXTRACTED_VERSION }} -p .\PublishOutput -e MoscoviumThree.exe -o .\Releases -i "Assets\Logo.ico" -t "Moscovium"
+      shell: pwsh
+      run: |
+        $exePath = "./PublishOutput/MoscoviumThree.exe"
+        if (-not (Test-Path $exePath)) {
+          Write-Error "Could not find MoscoviumThree.exe in PublishOutput. Checking contents..."
+          ls ./PublishOutput
+          exit 1
+        }
+        vpk pack --id Moscovium --version ${{ env.EXTRACTED_VERSION }} --packDir ./PublishOutput --mainExe MoscoviumThree.exe --outDir ./Releases --icon "Assets/Logo.ico"
 
     - name: Create GitHub Release and Upload Assets
       uses: softprops/action-gh-release@v2
@@ -57,3 +70,5 @@ jobs:
         generate_release_notes: true
         files: |
           Releases/*
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
