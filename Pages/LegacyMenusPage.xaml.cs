@@ -30,4 +30,9 @@ public sealed partial class LegacyMenusPage : Page
     {
         Process.Start(new ProcessStartInfo("control", "keyboard") { UseShellExecute = true });
     }
+
+    private void BtnSoundPanel_Click(object sender, RoutedEventArgs e)
+    {
+        Process.Start(new ProcessStartInfo("mmsys.cpl") { UseShellExecute = true });
+    }
 }

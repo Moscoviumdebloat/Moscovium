@@ -15,8 +15,108 @@ public sealed partial class HomePage : Page
         this.InitializeComponent();
     }
 
+    private async void BtnAutomateSetup_Click(object sender, RoutedEventArgs e)
+    {
+        var setupControl = new SetupAutomationDialog();
 
+        var dialog = new ContentDialog
+        {
+            Title = "PC Setup Automation",
+            Content = setupControl,
+            PrimaryButtonText = "Run Setup",
+            CloseButtonText = "Cancel",
+            DefaultButton = ContentDialogButton.Primary,
+            XamlRoot = this.XamlRoot
+        };
 
+        if (await dialog.ShowAsync() != ContentDialogResult.Primary) return;
+
+        // Start progressive execution UI
+        var progressControl = new StackPanel { Spacing = 12 };
+        var infoText = new TextBlock { Text = "Starting automation...", TextWrapping = TextWrapping.Wrap };
+        var progressBar = new ProgressBar { IsIndeterminate = true };
+        progressControl.Children.Add(infoText);
+        progressControl.Children.Add(progressBar);
+
+        var progressDialog = new ContentDialog
+        {
+            Title = "Automating Setup...",
+            Content = progressControl,
+            XamlRoot = this.XamlRoot
+        };
+
+        _ = progressDialog.ShowAsync();
+
+        try
+        {
+            // Update UI Helper Action
+            Action<string> updateProgress = (msg) =>
+            {
+                DispatcherQueue.TryEnqueue(() => infoText.Text = msg);
+            };
+
+            // 1. Windows Updates
+            if (setupControl.RunWindowsUpdate)
+            {
+                updateProgress("Running Windows Update. This may open a new window...");
+                await SetupAutomationHelper.RunWindowsUpdateAsync(updateProgress);
+            }
+
+            // 2. Winget Apps
+            var wingetApps = setupControl.GetSelectedWingetApps();
+            if (wingetApps.Count > 0)
+            {
+                foreach (var app in wingetApps)
+                {
+                    updateProgress($"Installing {app} via Winget...");
+                    await SetupAutomationHelper.InstallWingetAppAsync(app, updateProgress);
+                }
+            }
+
+            // 3. VC++ Runtimes
+            if (setupControl.InstallVCRuntimes)
+            {
+                updateProgress("Installing VC++ Runtimes...");
+                var extractPath = ResourceHelper.ExtractZipToTemp("Visual-C-Runtimes-All-in-One-Nov-2025.zip", "VisualCDistributables");
+                ProcessHelper.Run(System.IO.Path.Combine(extractPath, "install_all.bat"));
+            }
+
+            // 4. Tweaks (Launch externally)
+            if (setupControl.RunChrisTitus)
+            {
+                updateProgress("Launching Chris Titus WinUtil...");
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = "powershell",
+                    Arguments = "-Command \"iwr -useb https://christitus.com/win | iex\"",
+                    UseShellExecute = true,
+                    Verb = "runas"
+                };
+                Process.Start(startInfo);
+            }
+
+            if (setupControl.RunRaphi)
+            {
+                updateProgress("Launching Raphi Debloat...");
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = "powershell",
+                    Arguments = "-NoProfile -ExecutionPolicy Bypass -Command \"iwr -useb https://win11debloat.raphire.com/ | iex\"",
+                    UseShellExecute = true,
+                    Verb = "runas"
+                };
+                Process.Start(startInfo);
+            }
+
+            progressDialog.Hide();
+            await ShowInfo("Setup Automation Completed Successfully!\nNote: Some system tweaks or Windows Updates may require a manual restart to take effect.");
+        }
+        catch (Exception ex)
+        {
+            progressDialog.Hide();
+            await ShowError($"An error occurred during setup: {ex.Message}");
+        }
+    }
     private async void BtnWallpaper_Click(object sender, RoutedEventArgs e)
     {
         // Style selection dialog

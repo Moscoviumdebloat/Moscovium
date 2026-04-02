@@ -41,20 +41,34 @@
                               Header="Auto-update Moscovium"
                               OnContent="On"
                               OffContent="Off"
-                              Toggled="AutoUpdateMoscoviumToggle_Toggled"
-                              Margin="0,0,0,20"/>
+                              Toggled="AutoUpdateMoscoviumToggle_Toggled" />
 
-                <TextBlock Text="GitHub Personal Access Token (Optional)" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="0,0,0,10"/>
-                <TextBlock Text="Use this if you see 'No apps found' due to API rate limits." Style="{StaticResource CaptionTextBlockStyle}" Foreground="Gray" Margin="0,0,0,10"/>
-                <PasswordBox x:Name="GitHubTokenBox"
-                             PlaceholderText="ghp_..."
-                             PasswordChanged="GitHubTokenBox_PasswordChanged"
-                             Width="400"
-                             HorizontalAlignment="Left"/>
+                    <StackPanel Spacing="8" Margin="0,8,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="BtnCheckForUpdates" Content="Check for Updates" Click="BtnCheckForUpdates_Click" />
+                            <TextBlock x:Name="TxtUpdateStatus" Grid.Column="1" VerticalAlignment="Center" Margin="16,0,0,0"
+                                       Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                        </Grid>
+                        <ProgressBar x:Name="UpdateProgressBar" Minimum="0" Maximum="100" Value="0" Visibility="Collapsed" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="4" Margin="0,8,0,0">
+                        <TextBlock Text="GitHub Personal Access Token (Optional)" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                        <TextBlock Text="Use this if you see 'No apps found' due to API rate limits." Style="{StaticResource CaptionTextBlockStyle}" Foreground="Gray"/>
+                        <PasswordBox x:Name="GitHubTokenBox"
+                                     PlaceholderText="ghp_..."
+                                     PasswordChanged="GitHubTokenBox_PasswordChanged"
+                                     Width="400"
+                                     HorizontalAlignment="Left"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
 
-            <TextBlock Text="Moscovium v3.1.0" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" HorizontalAlignment="Center" Margin="0,24,0,0"/>
+            <TextBlock x:Name="TxtAppVersion" Text="Moscovium v3.1.0" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" HorizontalAlignment="Center" Margin="0,24,0,0"/>
         </StackPanel>
     </ScrollViewer>
 </Page>

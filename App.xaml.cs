@@ -1,4 +1,5 @@
 using Microsoft.UI.Xaml;
+using Velopack;
 
 namespace MoscoviumThree;
 
@@ -6,6 +7,7 @@ public partial class App : Application
 {
     public App()
     {
+        VelopackApp.Build().Run();
         this.InitializeComponent();
         this.UnhandledException += App_UnhandledException;
     }

@@ -1,10 +1,13 @@
+using System.Diagnostics;
 using Microsoft.UI;
 using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using MoscoviumThree.Helpers;
 using MoscoviumThree.Pages;
+using Velopack;
 using Windows.Graphics;
 using WinRT.Interop;
 
@@ -14,6 +17,7 @@ namespace MoscoviumThree;
 public sealed partial class MainWindow : Window
 {
     private DispatcherTimer _clockTimer;
+    private UpdateInfo? _pendingUpdate;
 
     public MainWindow()
     {
@@ -80,7 +84,7 @@ public sealed partial class MainWindow : Window
         appWindow.Resize(new SizeInt32(960, 640));
 
         // Set title bar
-        appWindow.Title = "Moscovium v3.4.0";
+        appWindow.Title = "Moscovium v3.4.1";
 
         // Try to set the icon
         try
@@ -115,6 +119,42 @@ public sealed partial class MainWindow : Window
         // Select Home by default
         NavView.SelectedItem = NavView.MenuItems[0];
         ContentFrame.Navigate(typeof(HomePage));
+
+        // Start silent auto-update check if enabled
+        if (SettingsHelper.AutoUpdateMoscovium)
+        {
+            _ = CheckForUpdatesSilentlyAsync();
+        }
+    }
+
+    private async Task CheckForUpdatesSilentlyAsync()
+    {
+        try
+        {
+            var update = await UpdateService.CheckAndDownloadSilentlyAsync();
+            if (update != null)
+            {
+                _pendingUpdate = update;
+                DispatcherQueue.TryEnqueue(() =>
+                {
+                    UpdateInfoBar.Title = $"Update v{update.TargetFullRelease.Version} Ready";
+                    UpdateInfoBar.Message = "A new version has been downloaded. Restart to apply the update.";
+                    UpdateInfoBar.IsOpen = true;
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[MainWindow] Auto-update check failed: {ex.Message}");
+        }
+    }
+
+    private void BtnRestartToUpdate_Click(object sender, RoutedEventArgs e)
+    {
+        if (_pendingUpdate != null)
+        {
+            UpdateService.ApplyUpdateAndRestart(_pendingUpdate);
+        }
     }
 
     private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

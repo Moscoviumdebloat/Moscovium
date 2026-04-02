@@ -13,7 +13,17 @@
             <!-- Header -->
             <TextBlock Text="Home" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,20" />
 
-
+            <!-- Automate PC Setup -->
+            <Button x:Name="BtnAutomateSetup" Style="{StaticResource ActionCardStyle}" Click="BtnAutomateSetup_Click" Background="{ThemeResource SystemAccentColorDark2}">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE713;" FontSize="24" Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Automate PC Setup" Style="{StaticResource CardHeaderStyle}" Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}" />
+                        <TextBlock Text="One-click install for apps, runtimes, and system tweaks. Perfect after a clean install."
+                                   Style="{StaticResource CardDescriptionStyle}" Foreground="{ThemeResource TextOnAccentFillColorSecondaryBrush}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
 
             <!-- Wallpaper -->
             <Button x:Name="BtnWallpaper" Style="{StaticResource ActionCardStyle}" Click="BtnWallpaper_Click">

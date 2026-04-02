@@ -62,6 +62,18 @@
                 </StackPanel>
             </Button>
 
+            <!-- Legacy Sound Panel -->
+            <Button x:Name="BtnSoundPanel" Style="{StaticResource ActionCardStyle}" Click="BtnSoundPanel_Click">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon Glyph="&#xE767;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="Legacy Sound Panel" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Open the classic Sound Properties dialog."
+                                   Style="{StaticResource CardDescriptionStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+
         </StackPanel>
     </ScrollViewer>
 </Page>

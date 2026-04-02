@@ -9,14 +9,13 @@ public sealed partial class AboutPage : Page
     public AboutPage()
     {
         this.InitializeComponent();
-        LoadVersionInfo();
+        this.Loaded += AboutPage_Loaded;
         LoadAppIcon();
     }
 
-    private void LoadVersionInfo()
+    private void AboutPage_Loaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        var version = Assembly.GetExecutingAssembly().GetName().Version;
-        TxtVersion.Text = $"Version {version}";
+        TxtVersion.Text = $"Version {Helpers.UpdateService.GetCurrentVersion()}";
     }
 
     private void LoadAppIcon()

@@ -13,11 +13,12 @@
     <ApplicationIcon>Assets\Logo.ico</ApplicationIcon>
     <RootNamespace>MoscoviumThree</RootNamespace>
     <AssemblyName>MoscoviumThree</AssemblyName>
-    <AssemblyVersion>3.4.0.0</AssemblyVersion>
-    <FileVersion>3.4.0.0</FileVersion>
+    <Version>3.5.2</Version>
+    <AssemblyVersion>3.5.2.0</AssemblyVersion>
+    <FileVersion>3.5.2.0</FileVersion>
     <Company>Unknown Cyberia</Company>
     <Product>Moscovium</Product>
-    <Authors>Yabosen, Akumarin, Bendy (Megamer Studios)</Authors>
+    <Authors>Yabosen, Akumarin, Bendy (Megamer Studios), TeRiRi</Authors>
     <Description>Windows utility toolbox</Description>
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <Platforms>x64;x86;ARM64</Platforms>
@@ -29,6 +30,7 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250310001" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="System.Drawing.Common" Version="9.0.3" />
+    <PackageReference Include="Velopack" Version="0.0.1298" />
   </ItemGroup>
 
   <ItemGroup>
