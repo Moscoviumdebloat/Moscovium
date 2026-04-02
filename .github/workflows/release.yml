@@ -58,7 +58,7 @@ jobs:
           ls ./PublishOutput
           exit 1
         }
-        vpk pack --id Moscovium --version ${{ env.EXTRACTED_VERSION }} --packDir ./PublishOutput --mainExe MoscoviumThree.exe --outDir ./Releases --icon "Assets/Logo.ico"
+        vpk pack -u Moscovium -v ${{ env.EXTRACTED_VERSION }} -p ./PublishOutput -e MoscoviumThree.exe -o ./Releases -i "Assets/Logo.ico"
 
     - name: Create GitHub Release and Upload Assets
       uses: softprops/action-gh-release@v2
