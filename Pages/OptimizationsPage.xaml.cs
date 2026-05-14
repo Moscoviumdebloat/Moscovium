@@ -47,12 +47,10 @@ public sealed partial class OptimizationsPage : Page
         try
         {
             var debloatJson = ResourceHelper.ExtractToTemp("Debloat.json", "Debloat.json");
-            ProcessHelper.RunPowerShellCommand("irm 'https://christitus.com/win' -OutFile \"$env:TEMP\\winutil.ps1\"");
             
-            // Short delay to ensure download
-            await Task.Delay(2000);
-            
-            ProcessHelper.RunPowerShellCommand($"& \"$env:TEMP\\winutil.ps1\" -Config '{debloatJson}' -Run");
+            // Use the official single-command approach: download + execute with config in one shot
+            var command = $"iex \"& {{ $(irm christitus.com/win) }} -Config '{debloatJson}' -Run\"";
+            ProcessHelper.RunElevatedPowerShellRaw(command);
             
             await ShowInfo("Chris Titus WinUtil (Automated) has been launched.");
         }
@@ -107,11 +105,49 @@ public sealed partial class OptimizationsPage : Page
 
     private async void BtnDynamicTick_Click(object sender, RoutedEventArgs e)
     {
+        var rbApply = new RadioButton
+        {
+            Content = "Disable Dynamic Tick (Apply)",
+            Tag = "Apply",
+            IsChecked = true,
+            Margin = new Thickness(0, 4, 0, 4)
+        };
+        var rbRevert = new RadioButton
+        {
+            Content = "Re-enable Dynamic Tick (Revert)",
+            Tag = "Revert",
+            Margin = new Thickness(0, 4, 0, 4)
+        };
+
+        var stack = new StackPanel { Spacing = 4 };
+        stack.Children.Add(rbApply);
+        stack.Children.Add(rbRevert);
+
+        var dialog = new ContentDialog
+        {
+            Title = "Dynamic Tick",
+            Content = stack,
+            PrimaryButtonText = "Apply",
+            CloseButtonText = "Cancel",
+            DefaultButton = ContentDialogButton.Primary,
+            XamlRoot = this.XamlRoot
+        };
+
+        var result = await dialog.ShowAsync();
+        if (result != ContentDialogResult.Primary) return;
+
         try
         {
-            ProcessHelper.RunElevated("bcdedit", "/set disabledynamictick yes");
-
-            await ShowInfo("The command 'bcdedit /set disabledynamictick yes' has been executed.\nA system restart is recommended for changes to take full effect.");
+            if (rbApply.IsChecked == true)
+            {
+                ProcessHelper.RunElevated("bcdedit", "/set disabledynamictick yes");
+                await ShowInfo("Dynamic tick has been disabled.\nA system restart is recommended for changes to take full effect.");
+            }
+            else if (rbRevert.IsChecked == true)
+            {
+                ProcessHelper.RunElevated("bcdedit", "/deletevalue disabledynamictick");
+                await ShowInfo("Dynamic tick has been re-enabled (reverted to default).\nA system restart is recommended for changes to take full effect.");
+            }
         }
         catch (Exception ex)
         {
@@ -121,12 +157,49 @@ public sealed partial class OptimizationsPage : Page
 
     private async void BtnWin32Priority_Click(object sender, RoutedEventArgs e)
     {
+        var rbApply = new RadioButton
+        {
+            Content = "Set Win32PrioritySeparation to 22 (Apply)",
+            Tag = "Apply",
+            IsChecked = true,
+            Margin = new Thickness(0, 4, 0, 4)
+        };
+        var rbRevert = new RadioButton
+        {
+            Content = "Restore Win32PrioritySeparation to default (Revert)",
+            Tag = "Revert",
+            Margin = new Thickness(0, 4, 0, 4)
+        };
+
+        var stack = new StackPanel { Spacing = 4 };
+        stack.Children.Add(rbApply);
+        stack.Children.Add(rbRevert);
+
+        var dialog = new ContentDialog
+        {
+            Title = "Win32 Priority Separation",
+            Content = stack,
+            PrimaryButtonText = "Apply",
+            CloseButtonText = "Cancel",
+            DefaultButton = ContentDialogButton.Primary,
+            XamlRoot = this.XamlRoot
+        };
+
+        var result = await dialog.ShowAsync();
+        if (result != ContentDialogResult.Primary) return;
+
         try
         {
-            // Dictionary tweak: Use reg.exe to handle elevation prompts automatically
-            ProcessHelper.RunElevated("reg", "add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\PriorityControl\" /v Win32PrioritySeparation /t REG_DWORD /d 22 /f");
-            
-            await ShowInfo("Registry command executed.\nA restart is required for changes to take effect.");
+            if (rbApply.IsChecked == true)
+            {
+                ProcessHelper.RunElevated("reg", "add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\PriorityControl\" /v Win32PrioritySeparation /t REG_DWORD /d 22 /f");
+                await ShowInfo("Win32PrioritySeparation set to 22.\nA restart is required for changes to take effect.");
+            }
+            else if (rbRevert.IsChecked == true)
+            {
+                ProcessHelper.RunElevated("reg", "add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\PriorityControl\" /v Win32PrioritySeparation /t REG_DWORD /d 2 /f");
+                await ShowInfo("Win32PrioritySeparation restored to default (2).\nA restart is required for changes to take effect.");
+            }
         }
         catch (Exception ex)
         {

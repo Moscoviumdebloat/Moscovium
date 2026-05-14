@@ -88,7 +88,7 @@ public sealed partial class HomePage : Page
                 var startInfo = new ProcessStartInfo
                 {
                     FileName = "powershell",
-                    Arguments = "-Command \"iwr -useb https://christitus.com/win | iex\"",
+                    Arguments = "-NoProfile -ExecutionPolicy Bypass -Command \"irm christitus.com/win | iex\"",
                     UseShellExecute = true,
                     Verb = "runas"
                 };

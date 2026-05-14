@@ -58,8 +58,8 @@
                 <StackPanel Orientation="Horizontal" Spacing="16">
                     <FontIcon Glyph="&#xE916;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
                     <StackPanel Spacing="2">
-                        <TextBlock Text="Disable Dynamic Tick" Style="{StaticResource CardHeaderStyle}" />
-                        <TextBlock Text="Run bcdedit to disable dynamic tick (restart required)."
+                        <TextBlock Text="Dynamic Tick" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Disable or re-enable dynamic tick via bcdedit (restart required)."
                                    Style="{StaticResource CardDescriptionStyle}" />
                     </StackPanel>
                 </StackPanel>
@@ -70,8 +70,8 @@
                 <StackPanel Orientation="Horizontal" Spacing="16">
                     <FontIcon Glyph="&#xE8B8;" FontSize="24" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
                     <StackPanel Spacing="2">
-                        <TextBlock Text="Set Win32PrioritySeparation" Style="{StaticResource CardHeaderStyle}" />
-                        <TextBlock Text="Set processor scheduling priority to 22 (Decimal) for responsiveness."
+                        <TextBlock Text="Win32PrioritySeparation" Style="{StaticResource CardHeaderStyle}" />
+                        <TextBlock Text="Set processor scheduling priority to 22 for responsiveness, or revert to default."
                                    Style="{StaticResource CardDescriptionStyle}" />
                     </StackPanel>
                 </StackPanel>

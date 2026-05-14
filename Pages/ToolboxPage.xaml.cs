@@ -13,7 +13,7 @@ public sealed partial class ToolboxPage : Page
 
     private void BtnCTT_Click(object sender, RoutedEventArgs e)
     {
-        ProcessHelper.RunElevatedPowerShellRaw("iwr -useb https://christitus.com/win | iex");
+        ProcessHelper.RunElevatedPowerShellRaw("irm christitus.com/win | iex");
     }
 
     private async void BtnSAB_Click(object sender, RoutedEventArgs e)
