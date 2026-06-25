@@ -10,8 +10,7 @@ namespace MoscoviumThree.Helpers;
 /// </summary>
 public static class UpdateService
 {
-    // TODO: Update this to your actual GitHub repository URL
-    private const string GitHubRepoUrl = "https://github.com/Moscoviumdebloat/Moscovium-V3";
+    private const string GitHubRepoUrl = "https://github.com/Moscoviumdebloat/Moscovium";
 
     private static UpdateManager CreateManager()
     {
