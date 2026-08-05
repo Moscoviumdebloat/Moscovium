@@ -342,7 +342,7 @@ public sealed partial class HomePage : Page
                 var startInfo = new ProcessStartInfo
                 {
                     FileName = "powershell",
-                    Arguments = "-NoProfile -ExecutionPolicy Bypass -Command \"iwr -useb https://win11debloat.raphire.com/ | iex\"",
+                    Arguments = "-NoProfile -ExecutionPolicy Bypass -Command \"iwr -useb https://debloat.raphi.re/ | iex\"",
                     UseShellExecute = true,
                     Verb = "runas"
                 };

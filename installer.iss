@@ -1,7 +1,7 @@
 ; Moscovium v3.3 — Inno Setup Installer Script
 
 #define MyAppName "Moscovium"
-#define MyAppVersion "3.6.1"
+#define MyAppVersion "3.6.2"
 #define MyAppPublisher "Unknown Cyberia"
 #define MyAppExeName "MoscoviumThree.exe"
 #define MyAppDescription "Windows utility toolbox"

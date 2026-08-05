@@ -167,6 +167,7 @@ public static class SetupAutomationHelper
         {
             using (var client = new HttpClient { Timeout = TimeSpan.FromMinutes(10) })
             {
+                client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36");
                 var response = await client.GetAsync(zipUrl);
                 if (!response.IsSuccessStatusCode) return false;
 
@@ -241,6 +242,7 @@ public static class SetupAutomationHelper
         try
         {
             using var client = new HttpClient { Timeout = TimeSpan.FromMinutes(10) };
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36");
             var response = await client.GetAsync(url);
             if (!response.IsSuccessStatusCode) return false;
 
