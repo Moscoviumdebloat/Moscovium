@@ -203,6 +203,10 @@ public sealed partial class MainWindow : Window
                     ContentFrame.Navigate(typeof(TweaksPage));
                     break;
 
+                case "guides":
+                    ContentFrame.Navigate(typeof(GuidesPage));
+                    break;
+
                 case "csgo":
                     ContentFrame.Navigate(typeof(CSGOPage));
                     break;

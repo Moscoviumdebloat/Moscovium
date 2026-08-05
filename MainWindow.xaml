@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MoscoviumThree"
-    Title="Moscovium v3.4.1">
+    Title="Moscovium v3.6.1">
 
     <Grid>
         <NavigationView
@@ -27,6 +27,12 @@
                 <NavigationViewItem Content="Debloat Tweaks" Tag="tweaks">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE72E;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem Content="Guides" Tag="guides">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8F1;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 

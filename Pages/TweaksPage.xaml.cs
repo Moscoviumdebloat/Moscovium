@@ -116,7 +116,7 @@ public sealed partial class TweaksPage : Page
             VerticalScrollBarVisibility = ScrollBarVisibility.Auto
         };
 
-        var panel = new StackPanel { Spacing = 8, Width = 640 };
+        var panel = new StackPanel { Spacing = 8, Width = 520 };
         panel.Children.Add(headerText);
         panel.Children.Add(progressBar);
         panel.Children.Add(scrollViewer);

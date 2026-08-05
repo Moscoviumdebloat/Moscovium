@@ -190,6 +190,31 @@ public static class TweakCatalog
                 new(@"HKEY_CURRENT_USER\Control Panel\Accessibility\StickyKeys", "Flags", "DWord", 506),
             }),
 
+        // ===== Hardware & Gaming =====
+        new("Enable Hardware Accelerated GPU Scheduling", "Lets the GPU manage its own scheduling, reducing CPU overhead in games. Requires reboot.",
+            "Hardware & Gaming", new List<RegValue>
+            {
+                new(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DirectX\GraphicsSettings", "HwSchMode", "DWord", 2),
+            }),
+        new("Disable Game DVR Recording", "Disables Game Bar background recording, a known source of micro-stutter in games.",
+            "Hardware & Gaming", new List<RegValue>
+            {
+                new(@"HKEY_CURRENT_USER\System\GameConfigStore", "GameDVR_Enabled", "DWord", 0),
+                new(@"HKEY_CURRENT_USER\System\GameConfigStore", "GameDVR_FSEBehaviorMode", "DWord", 2),
+            }),
+        new("High Performance Power Plan", "Switches Windows to the High Performance power plan so the CPU never downclocks.",
+            "Hardware & Gaming", Kind: "PowerPlan"),
+        new("Disable Memory Integrity (HVCI)", "Disables VBS memory integrity. Can improve FPS and frame pacing on older CPUs. Security tradeoff, requires reboot.",
+            "Hardware & Gaming", new List<RegValue>
+            {
+                new(@"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity", "Enabled", "DWord", 0),
+            }),
+        new("Disable CPU Mitigations", "Disables Spectre/Meltdown mitigations for a small CPU gain on older CPUs (pre-12th gen). Security tradeoff, requires reboot.",
+            "Hardware & Gaming", new List<RegValue>
+            {
+                new(@"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management", "CpuMitigations", "DWord", 0),
+            }),
+
         // ===== Advanced =====
         new("Edge Debloat", "Disables Edge telemetry, shopping assistant, Rewards, first-run experience and more.",
             "Advanced", new List<RegValue>
@@ -252,6 +277,7 @@ public static class TweakCatalog
         "Privacy & Telemetry",
         "Explorer & Taskbar",
         "Gaming & Performance",
+        "Hardware & Gaming",
         "Advanced",
     };
 

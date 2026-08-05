@@ -62,6 +62,12 @@ public static class SetupAutomationHelper
             return await InstallFromZipAsync(app.ZipUrl, app.Name);
         }
 
+        if (app.IsScript && !string.IsNullOrEmpty(app.ScriptUrl))
+        {
+            progressCallback?.Invoke($"Launching {app.Name} script...");
+            return await InstallFromScriptAsync(app.ScriptUrl, app.Name);
+        }
+
         if (app.IsDownload && !string.IsNullOrEmpty(app.DownloadUrl))
         {
             var url = app.DownloadUrl;
@@ -115,6 +121,35 @@ public static class SetupAutomationHelper
         return RunWingetAsync(
             $"install --id {wingetId} --exact --silent --accept-package-agreements --accept-source-agreements --disable-interactivity{sourceArg}",
             progressCallback);
+    }
+
+    /// <summary>
+    /// Runs a PowerShell bootstrap script from a URL (irm &lt;url&gt; | iex pattern), elevated.
+    /// </summary>
+    private static async Task<bool> InstallFromScriptAsync(string scriptUrl, string appName)
+    {
+        try
+        {
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "powershell",
+                Arguments = $"-NoProfile -ExecutionPolicy Bypass -Command \"irm '{scriptUrl}' | iex\"",
+                UseShellExecute = true,
+                Verb = "runas",
+                CreateNoWindow = false
+            };
+
+            using var process = Process.Start(startInfo);
+            if (process == null) return false;
+
+            await process.WaitForExitAsync();
+            return process.ExitCode == 0;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Script install failed for {appName}: {ex.Message}");
+            return false;
+        }
     }
 
     /// <summary>

@@ -7,28 +7,40 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Width="640" MinHeight="460">
+    <Grid MinWidth="420" MaxWidth="900">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Select items to install/apply:" Margin="0,0,0,12" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Select items to install/apply:" Margin="0,0,0,8" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="SearchBox" PlaceholderText="Search apps and tweaks..."
+                         TextChanged="SearchBox_TextChanged" />
+                <TextBlock x:Name="SelectionSummaryText" Grid.Column="1" VerticalAlignment="Center"
+                           FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+            </Grid>
+        </StackPanel>
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <StackPanel x:Name="AppsPanel" Spacing="8" Padding="0,0,16,0">
-                <TextBlock Text="System Tweaks" FontWeight="SemiBold" Margin="0,0,0,0" />
-            </StackPanel>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,12,0,0">
+            <StackPanel x:Name="AppsPanel" Spacing="4" Padding="0,0,8,0" />
         </ScrollViewer>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8" Margin="0,12,0,0">
-            <Button Content="Select All Apps" Click="BtnSelectAll_Click" />
-            <Button Content="Clear Apps" Click="BtnClearApps_Click" />
-            <AppBarSeparator />
-            <Button Content="Save Profile..." Click="BtnSaveProfile_Click" />
-            <Button Content="Load Profile..." Click="BtnLoadProfile_Click" />
-            <TextBlock x:Name="ProfileStatusText" VerticalAlignment="Center" FontSize="12"
+        <StackPanel Grid.Row="2" Margin="0,12,0,0" Spacing="8">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button Content="Select All Apps" Click="BtnSelectAll_Click" />
+                <Button Content="Clear Apps" Click="BtnClearApps_Click" />
+                <AppBarSeparator />
+                <Button Content="Save Profile..." Click="BtnSaveProfile_Click" />
+                <Button Content="Load Profile..." Click="BtnLoadProfile_Click" />
+            </StackPanel>
+            <TextBlock x:Name="ProfileStatusText" FontSize="12" TextWrapping="Wrap"
                        Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
         </StackPanel>
 

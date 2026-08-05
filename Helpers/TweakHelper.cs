@@ -23,6 +23,8 @@ public static class TweakHelper
                 return RunDiskCleanup();
             case "CleanTemp":
                 return CleanTempFiles();
+            case "PowerPlan":
+                return SetHighPerformancePowerPlan();
         }
 
         if (tweak.Registry == null) return true;
@@ -67,6 +69,31 @@ public static class TweakHelper
         if (kind == RegistryValueKind.DWord) key.SetValue(name, Convert.ToInt32(value), kind);
         else if (kind == RegistryValueKind.QWord) key.SetValue(name, Convert.ToInt64(value), kind);
         else key.SetValue(name, Convert.ToString(value) ?? string.Empty, kind);
+    }
+
+    private static bool SetHighPerformancePowerPlan()
+    {
+        try
+        {
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "powercfg",
+                Arguments = "-setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c",
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true
+            };
+            using var process = Process.Start(startInfo);
+            if (process == null) return false;
+            process.WaitForExit();
+            return process.ExitCode == 0;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Power plan switch failed: {ex.Message}");
+            return false;
+        }
     }
 
     private static bool CreateRestorePoint()
