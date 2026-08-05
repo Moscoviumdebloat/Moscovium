@@ -7,6 +7,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <DataTemplate x:Key="LogEntryTemplate">
+            <Grid ColumnSpacing="10" Padding="0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <FontIcon Glyph="{Binding Glyph}" FontSize="12" VerticalAlignment="Center"
+                          Foreground="{Binding GlyphColor}" />
+                <TextBlock Grid.Column="1" Text="{Binding Text}" TextWrapping="Wrap" VerticalAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
     <ScrollViewer Padding="36,24,36,24">
         <StackPanel MaxWidth="800" HorizontalAlignment="Left" Spacing="4">
 

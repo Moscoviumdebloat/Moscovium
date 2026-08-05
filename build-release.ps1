@@ -1,5 +1,5 @@
 param(
-    [string]$Version = "3.4.1"
+    [string]$Version = "3.6.0"
 )
 
 # 1. Clear previous outputs

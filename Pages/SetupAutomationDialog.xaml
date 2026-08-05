@@ -7,60 +7,30 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Width="600" MinHeight="400">
+    <Grid Width="640" MinHeight="460">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Select items to install/apply:" Margin="0,0,0,16" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        <TextBlock Text="Select items to install/apply:" Margin="0,0,0,12" Style="{ThemeResource BodyStrongTextBlockStyle}" />
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <StackPanel Spacing="16" Padding="0,0,16,0">
-                
-                <!-- Apps -->
-                <Expander Header="Applications (via Winget)" HorizontalAlignment="Stretch" IsExpanded="True">
-                    <StackPanel Spacing="8">
-                        <!-- Browsers -->
-                        <TextBlock Text="Browsers" FontWeight="SemiBold" Margin="0,4,0,0" />
-                        <CheckBox Content="Google Chrome" Tag="Google.Chrome" Checked="App_Checked" Unchecked="App_Unchecked" />
-                        <CheckBox Content="Mozilla Firefox" Tag="Mozilla.Firefox" Checked="App_Checked" Unchecked="App_Unchecked" />
-                        
-                        <!-- Gaming -->
-                        <TextBlock Text="Gaming &amp; Chat" FontWeight="SemiBold" Margin="0,8,0,0" />
-                        <CheckBox Content="Steam" Tag="Valve.Steam" Checked="App_Checked" Unchecked="App_Unchecked" />
-                        <CheckBox Content="Discord" Tag="Discord.Discord" Checked="App_Checked" Unchecked="App_Unchecked" />
-                        <CheckBox Content="Spotify" Tag="Spotify.Spotify" Checked="App_Checked" Unchecked="App_Unchecked" />
-
-                        <!-- Utilities -->
-                        <TextBlock Text="Utilities" FontWeight="SemiBold" Margin="0,8,0,0" />
-                        <CheckBox Content="7-Zip" Tag="7zip.7zip" Checked="App_Checked" Unchecked="App_Unchecked" />
-                        <CheckBox Content="VLC Media Player" Tag="VideoLAN.VLC" Checked="App_Checked" Unchecked="App_Unchecked" />
-                        <CheckBox Content="Visual Studio Code" Tag="Microsoft.VisualStudioCode" Checked="App_Checked" Unchecked="App_Unchecked" />
-                    </StackPanel>
-                </Expander>
-
-                <!-- Drivers -->
-                <Expander Header="Drivers &amp; Updates" HorizontalAlignment="Stretch" IsExpanded="True">
-                    <StackPanel Spacing="8">
-                        <CheckBox x:Name="ChkWindowsUpdate" Content="Run Windows Update (Forces check &amp; install)" />
-                        <CheckBox Content="NVIDIA App" Tag="Nvidia.NvidiaApp" Checked="App_Checked" Unchecked="App_Unchecked" />
-                        <CheckBox Content="AMD Adrenalin" Tag="AMD.Adrenalin" Checked="App_Checked" Unchecked="App_Unchecked" />
-                    </StackPanel>
-                </Expander>
-
-                <!-- Tweaks -->
-                <Expander Header="Moscovium Tweaks" HorizontalAlignment="Stretch" IsExpanded="True">
-                    <StackPanel Spacing="8">
-                        <CheckBox x:Name="ChkVCRuntimes" Content="Install All Visual C++ Runtimes" />
-                        <CheckBox x:Name="ChkChrisTitus" Content="Run Chris Titus WinUtil (Debloat)" />
-                        <CheckBox x:Name="ChkRaphi" Content="Run Win11 Debloat (Raphi)" />
-                    </StackPanel>
-                </Expander>
-
+            <StackPanel x:Name="AppsPanel" Spacing="8" Padding="0,0,16,0">
+                <TextBlock Text="System Tweaks" FontWeight="SemiBold" Margin="0,0,0,0" />
             </StackPanel>
         </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8" Margin="0,12,0,0">
+            <Button Content="Select All Apps" Click="BtnSelectAll_Click" />
+            <Button Content="Clear Apps" Click="BtnClearApps_Click" />
+            <AppBarSeparator />
+            <Button Content="Save Profile..." Click="BtnSaveProfile_Click" />
+            <Button Content="Load Profile..." Click="BtnLoadProfile_Click" />
+            <TextBlock x:Name="ProfileStatusText" VerticalAlignment="Center" FontSize="12"
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+        </StackPanel>
 
     </Grid>
 </UserControl>

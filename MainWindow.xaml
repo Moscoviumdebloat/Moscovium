@@ -24,6 +24,12 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
+                <NavigationViewItem Content="Debloat Tweaks" Tag="tweaks">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE72E;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
                 <NavigationViewItem Content="App Store" Tag="store">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE719;" />

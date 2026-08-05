@@ -199,6 +199,10 @@ public sealed partial class MainWindow : Window
                     ContentFrame.Navigate(typeof(OptimizationsPage));
                     break;
 
+                case "tweaks":
+                    ContentFrame.Navigate(typeof(TweaksPage));
+                    break;
+
                 case "csgo":
                     ContentFrame.Navigate(typeof(CSGOPage));
                     break;
